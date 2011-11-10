@@ -1,0 +1,747 @@
+package me.cain.commandbin.commands;
+
+import me.cain.commandbin.CommandBin;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
+
+public class PlayerCommands implements CommandExecutor
+{
+
+	@Override
+	public boolean onCommand(CommandSender s, Command c, String l, String[] args)
+	{
+		Player sender = (Player) s;
+		if(l.equalsIgnoreCase("tp"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.teleport.tp"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						sender.teleport(target.getLocation());
+						sender.sendMessage(ChatColor.GREEN + "Teleported to " + target.getName());
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("tphere"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.teleport.tphere"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						target.teleport(sender.getLocation());
+						sender.sendMessage(ChatColor.GREEN + "Teleported " + target.getName() + " to you!");
+						target.sendMessage(sender.getName() + " teleported you!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("setspawn"))
+		{
+			if(CommandBin.plugin.pCheck(sender, "CommandBin.teleport.setspawn"))
+			{
+				sender.getWorld().setSpawnLocation((int) sender.getLocation().getX(), (int) sender.getLocation().getY(), (int) sender.getLocation().getZ());
+				sender.sendMessage(ChatColor.GREEN + " World spawn set!");
+			}
+			else
+			{
+				sender.sendMessage(CommandBin.plugin.NoPermission);
+			}
+		}
+		
+		if(l.equalsIgnoreCase("spawn"))
+		{
+			if(CommandBin.plugin.pCheck(sender, "CommandBin.teleport.spawn"))
+			{
+				sender.teleport(sender.getWorld().getSpawnLocation());
+				sender.sendMessage(ChatColor.GREEN + "Teleported to Spawn in '" + sender.getWorld().getName().toLowerCase() + "'");
+			}
+			else
+			{
+				sender.sendMessage(CommandBin.plugin.NoPermission);
+			}
+		}
+		
+		if(l.equalsIgnoreCase("tpall"))
+		{
+			if(CommandBin.plugin.pCheck(sender, "CommandBin.teleport.tpall"))
+			{
+				for(Player p : Bukkit.getServer().getOnlinePlayers())
+				{
+					p.teleport(sender.getLocation());
+					p.sendMessage(ChatColor.GREEN + sender.getName() + " has teleported you!");
+					sender.sendMessage(ChatColor.GREEN + "Teleported everyone to you!");
+				}
+			}
+			else
+			{
+				sender.sendMessage(CommandBin.plugin.NoPermission);
+			}
+		}
+		
+		if(l.equalsIgnoreCase("tpworld"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [world]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.teleport.world"))
+				{
+					if(Bukkit.getServer().getWorld(args[0]) != null)
+					{
+						sender.teleport(Bukkit.getServer().getWorld(args[0]).getSpawnLocation());
+						sender.sendMessage(ChatColor.GREEN + "Teleported to world '" + Bukkit.getServer().getWorld(args[0]).getName() + "'");
+					}
+					else
+					{
+						sender.sendMessage(ChatColor.RED + "World '" + args[0] + "' does not exist.");
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("shoot"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.shoot"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						target.setVelocity(new Vector(0, 64, 0));
+						sender.sendMessage(ChatColor.GREEN + "You shot " + target.getName() + " into the air!");
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " shot you into the air!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("strike"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.strike"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						target.getWorld().strikeLightning(target.getLocation());
+						sender.sendMessage(ChatColor.GREEN + "You striked " + target.getName());
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " striked you!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("time"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [day/night]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.time"))
+				{
+					if(args[0].equalsIgnoreCase("day"))
+					{
+						sender.sendMessage(ChatColor.GREEN + "You have set it to day-time!");
+						sender.getWorld().setTime(0);
+					}
+					
+					if(args[0].equalsIgnoreCase("night"))
+					{
+						sender.sendMessage(ChatColor.GREEN + "You have set it to night-time!");
+						sender.getWorld().setTime(10000000);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("facepalm"))
+		{
+			if(CommandBin.plugin.pCheck(sender, "CommandBin.general.facepalm"))
+			{
+				Bukkit.getServer().broadcastMessage(sender.getName() + " facepalm'd");
+			}
+			else
+			{
+				sender.sendMessage(CommandBin.plugin.NoPermission);
+			}
+		}
+		
+		if(l.equalsIgnoreCase("heal"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.heal"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						target.setHealth(20);
+						sender.sendMessage(ChatColor.GREEN + target.getName() + "'s health is now full!");
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " restored your health!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("feed"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.feed"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						target.setFoodLevel(20);
+						sender.sendMessage(ChatColor.GREEN + target.getName() + "'s food bar is now full!");
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " set your food bar to full!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("godmode"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [on/off]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.godmode"))
+				{
+					if(args[0].equalsIgnoreCase("on"))
+					{
+						CommandBin.plugin.getConfig().set(sender.getName() + ".godmode", true);
+						sender.sendMessage(ChatColor.GREEN + "Godmode enabled!");
+						CommandBin.plugin.saveConfig();
+					}
+					
+					if(args[0].equalsIgnoreCase("off"))
+					{
+						CommandBin.plugin.getConfig().set(sender.getName() + ".godmode", false);
+						sender.sendMessage(ChatColor.GREEN + "Godmode disabled!");
+						CommandBin.plugin.saveConfig();
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("explode"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.explode"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						target.getWorld().createExplosion(target.getLocation(), 5);
+						sender.sendMessage(ChatColor.GREEN + "You created a explosion at " + target.getName() + "'s location!");
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " created a explosion at your location.");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("light"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.light"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						target.setFireTicks(100);
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("roll"))
+		{
+			if(args.length < 2)
+			{
+				sender.sendMessage("/" + l.toString() + " [min] [max]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.roll"))
+				{
+					Double rand = ((Math.random() * (Integer.parseInt(args[1]) - Integer.parseInt(args[0]))) + Integer.parseInt(args[0]));
+					long rounded = Math.round(rand);
+					Bukkit.getServer().broadcastMessage(ChatColor.GREEN + sender.getName() + " Rolled " + ChatColor.RED + args[0] + ChatColor.GREEN + " and " + ChatColor.RED + args[1] + ChatColor.GREEN + " and got: " + rounded);
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("smoke"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [on/off]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.smoke"))
+				{
+					if(args[0].equalsIgnoreCase("on"))
+					{
+						CommandBin.plugin.getConfig().set(sender.getName() + ".smoke", true);
+						CommandBin.plugin.saveConfig();
+						sender.sendMessage(ChatColor.GREEN + "You are now a walking chimney! *giggles*");
+					}
+					
+					if(args[0].equalsIgnoreCase("off"))
+					{
+						CommandBin.plugin.getConfig().set(sender.getName() + ".smoke", false);
+						CommandBin.plugin.saveConfig();
+						sender.sendMessage(ChatColor.GREEN + "You are no longer the walking chimney!");
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("explosionstick"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [on/off]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.explosionstick"))
+				{
+					if(args[0].equalsIgnoreCase("on"))
+					{
+						CommandBin.plugin.getConfig().set(sender.getName() + ".explosionstick", true);
+						CommandBin.plugin.saveConfig();
+						sender.sendMessage(ChatColor.AQUA + "Explosion stick enabled");
+						sender.getInventory().addItem(new ItemStack(Material.STICK, 1));
+					}
+					
+					if(args[0].equalsIgnoreCase("off"))
+					{
+						CommandBin.plugin.getConfig().set(sender.getName() + ".explosionstick", false);
+						CommandBin.plugin.saveConfig();
+						sender.sendMessage(ChatColor.AQUA + "Explosion stick disabled");
+						sender.getInventory().remove(new ItemStack(Material.STICK, 1));
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("lightningstick"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [on/off]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.lightningstick"))
+				{
+					if(args[0].equalsIgnoreCase("on"))
+					{
+						CommandBin.plugin.getConfig().set(sender.getName() + ".lightningstick", true);
+						sender.sendMessage(ChatColor.AQUA + "Lightning stick enabled");
+						CommandBin.plugin.saveConfig();
+						sender.getInventory().addItem(new ItemStack(Material.STICK, 1));
+					}
+					
+					if(args[0].equalsIgnoreCase("off"))
+					{
+						CommandBin.plugin.getConfig().set(sender.getName() + ".lightningstick", false);
+						sender.sendMessage(ChatColor.AQUA + "Lightning stick disabled");
+						CommandBin.plugin.saveConfig();
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("slap"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.slap"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						target.setVelocity(new Vector(0.3, 0.4, 0));
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " slapped you!");
+						sender.sendMessage(ChatColor.GREEN + "You slapped " + sender.getName());
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("clearinv"))
+		{
+			if(args.length < 1)
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.clearinv"))
+				{
+					sender.getInventory().clear();
+					sender.sendMessage(ChatColor.GREEN + "Inventory cleared!");
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+			else
+			{
+				Player target = Bukkit.getServer().getPlayer(args[0]);
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.clearinv.others"))
+				{
+					if(target != null)
+					{
+						target.getInventory().clear();
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " cleared your inventory!");
+						sender.sendMessage(ChatColor.GREEN + "Successfully cleared " + target.getName() + "'s inventory!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if (l.equalsIgnoreCase("i"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [name] [amount]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.item"))
+				{
+				int id = -1;
+				int amount = 1;
+				try {
+					id = Integer.parseInt(args[0]);
+				} catch (NumberFormatException e) {
+					Material mat = Material.getMaterial(args[0].toUpperCase().replace(" ", "_"));
+					id = (mat != null ? mat.getId() : -1);
+				}
+				if (args.length > 1) {
+					try {
+						amount = Integer.parseInt(args[1]);
+					} catch (NumberFormatException e) {
+					}
+				}
+				if (id == -1) { sender.sendMessage(ChatColor.RED + "This item does not exist."); return false; }
+				((Player)sender).getInventory().addItem(new ItemStack(id, amount));
+				((Player)sender).sendMessage(ChatColor.GREEN + "You obtained " + id);
+				return true;
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("msg"))
+		{
+			if(args.length < 2)
+			{
+				sender.sendMessage("/" + l.toString() + " [player] [message]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.msg"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{	
+						StringBuilder x = new StringBuilder();
+						int x2;
+						for (x2=1; x2 < args.length; x2++ ) {
+							x.append(args[x2]).append(" ");
+						}
+						String from = ChatColor.RED + "[FROM " + sender.getName() + "] " + ChatColor.WHITE + ": " + x.toString().trim();
+						String to = ChatColor.RED + "[TO " + target.getName() + "] " + ChatColor.WHITE + ": " + x.toString().trim();
+						
+						target.sendMessage(from);
+						sender.sendMessage(to);
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("nick"))
+		{
+			if(args.length < 2)
+			{
+				sender.sendMessage("/" + l.toString() + " [player] [nickname]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.nick"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						if(args[1].length() < 20)
+						{
+							target.setDisplayName(args[1]);
+							sender.sendMessage(ChatColor.GREEN + target.getName() + "'s name changed to " + args[1]);
+							target.sendMessage(ChatColor.GREEN + sender.getName() + " changed your name to " + args[1]);
+						}
+						else
+						{
+							sender.sendMessage(ChatColor.RED + "That name is too long. It must be below 20 characters.");
+						}
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("setxp"))
+		{
+			if(args.length < 2)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.setxp"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						target.setExperience(Integer.parseInt(args[1]));
+						sender.sendMessage(ChatColor.GREEN + target.getName() + "'s experience has been set to " + args[1]);
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " set your experience points to " + args[1]);
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("kill"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.kill"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						target.getWorld().strikeLightning(target.getLocation());
+						target.setHealth(0);
+						sender.sendMessage(ChatColor.GREEN + "You killed " + target.getName());
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " killed you!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		
+		return false;
+	}
+
+}
