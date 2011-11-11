@@ -1,7 +1,5 @@
 package me.cain.commandbin.commands;
 
-import java.util.List;
-
 import me.cain.commandbin.CommandBin;
 
 import org.bukkit.Bukkit;
