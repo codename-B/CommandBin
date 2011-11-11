@@ -12,6 +12,7 @@ import me.cain.commandbin.commands.SnowmanCommands;
 import me.cain.commandbin.commands.WarpCommands;
 import me.cain.commandbin.commands.WeatherCommands;
 import me.cain.commandbin.commands.WorldCommands;
+import me.cain.commandbin.listeners.BListener;
 import me.cain.commandbin.listeners.EListener;
 import me.cain.commandbin.listeners.EnderListener;
 import me.cain.commandbin.listeners.PListener;
@@ -35,10 +36,6 @@ public class CommandBin extends JavaPlugin {
 	
 	public void onEnable()
 	{
-			ConfigDefaultValues();
-			
-			if(getConfig().get("settings.craftbukkitversion").toString().contains("1337"))
-			{
 				System.out.println(Plugin + "Enabled successfully.");
 				getServer().getPluginManager().registerEvent(Type.PLAYER_MOVE, new PListener(), Priority.Normal, this);
 				getServer().getPluginManager().registerEvent(Type.PLAYER_INTERACT, new PListener(), Priority.Normal, this);
@@ -53,22 +50,129 @@ public class CommandBin extends JavaPlugin {
 				getServer().getPluginManager().registerEvent(Type.ENDERMAN_PLACE, new EnderListener(), Priority.Normal, this);
 				getServer().getPluginManager().registerEvent(Type.PLAYER_TOGGLE_SPRINT, new PListener(), Priority.Normal, this);
 				getServer().getPluginManager().registerEvent(Type.PLAYER_RESPAWN, new PListener(), Priority.Normal, this);
+				getServer().getPluginManager().registerEvent(Type.PLAYER_GAME_MODE_CHANGE, new PListener(), Priority.Normal, this);
+				getServer().getPluginManager().registerEvent(Type.BLOCK_PLACE, new BListener(), Priority.Normal, this);
 				setupPermissions();
 				SetupCommands();
 				plugin = this;
-			}
-			else
-			{
-				System.out.println(Plugin + "++++++++++++++++++++WARNING+++++++++++++++++++");
-				System.out.println(Plugin + "CraftBukkit Build not supported. Disabling..");
-				System.out.println(Plugin + "Please shut your server down and open ./CommandBin/config.yml");
-				System.out.println(Plugin + "and modify 'craftbukkitversion' to say '1337' (If you are on #1337)");
-				System.out.println(Plugin + "Start once you are complete, to enable CommandBin.");
-				System.out.println(Plugin + "++++++++++++++++++++++++++++++++++++++++++++++");
-				getServer().getPluginManager().disablePlugin(this);
-			}
+				ConfigurationDefaultSetup();
 	}
 	
+	public void ConfigurationDefaultSetup()
+	{
+		getConfig().options().header(
+				"###############################\n" + 
+				"Default Configuration File for CommandBin \n" +
+				"CommandBin was created by CainFoool\n" +
+				"All the values generated below are default and are fully editable.\n" +
+				"Feel free to edit them as you plead.\n" +
+				"Every time this plugin starts up, this text\n" +
+				"Will be generated every time (sorry :p)" +
+				"\n\n" +
+				"CainFoool\n" +
+				"###############################\n\n");
+		
+		if(getConfig().getString("settings.shutdownmessage", null) == null)
+		{
+			getConfig().set("settings.shutdownmessage", "The server is going down for shutdown!");
+			System.out.println(Plugin + "[Config] Setting default shutdown message");
+			System.out.println(Plugin + "[Config] Current Shutdown Value: " + getConfig().getString("settings.shutdownmessage"));
+			saveConfig();
+			System.out.println(Plugin + "[Config] New Shutdown Value: " + getConfig().getString("settings.shutdownmessage"));
+		}
+		
+		if(getConfig().get("settings.broadcastkick") == null)
+		{
+			getConfig().set("settings.broadcastkick", true);
+			System.out.println(Plugin + "[Config] Setting default broadcast on kick");
+			saveConfig();
+		}
+		
+		if(getConfig().get("settings.broadcastban") == null)
+		{
+			getConfig().set("settings.broadcastban", true);
+			System.out.println(Plugin + "[Config] Setting default broadcast on ban");
+			saveConfig();
+		}
+		
+		if(getConfig().getString("settings.playerismuted", null) == null)
+		{
+			getConfig().set("settings.playerismuted", "You are muted, shh!");
+			System.out.println(Plugin + "[Config] Setting default Player is Muted message");
+			saveConfig();
+		}
+		
+		if(getConfig().getString("settings.playercannotusecommands", null) == null)
+		{
+			getConfig().set("settings.playercannotusecommands", "You cannot use commands. Stop trying!");
+			System.out.println(Plugin + "[Config] Setting default player cannot use commands message");
+			saveConfig();
+		}
+		
+		if(getConfig().getString("settings.joinmessage", null) == null)
+		{
+			getConfig().set("settings.joinmessage", "has joined the game");
+			System.out.println(Plugin + "[Config] Setting default Join Message");
+			saveConfig();
+		}
+		
+		if(getConfig().getString("settings.leavemessage", null) == null)
+		{
+			getConfig().set("settings.leavemessage", "has left the game");
+			System.out.println(Plugin + "[Config] Setting default Leave Message");
+			saveConfig();
+		}
+		
+		if(getConfig().get("settings.dropxpondeath") == null)
+		{
+			getConfig().set("settings.dropxpondeath", false);
+			System.out.println(Plugin + "[Config] Setting default Drop XP on Death");
+			saveConfig();
+		}
+		
+		if(getConfig().getString("settings.craftbukkitversion", null) == null)
+		{
+			getConfig().set("settings.craftbukkitversion", getServer().getVersion().toString());
+			System.out.println(Plugin + "[Config] Setting default Craftbukkit Version");
+			saveConfig();
+		}
+		
+		if(getConfig().getString("settings.consolename", null) == null)
+		{
+			getConfig().set("settings.consolename", "Console");
+			System.out.println(Plugin + "[Config] Setting default Console Name");
+			saveConfig();
+		}
+		
+		if(getConfig().get("settings.endermangriefing") == null)
+		{
+			getConfig().set("settings.endermangriefing", false);
+			System.out.println(Plugin + "[Config] Setting default Enderman can grief to false");
+			saveConfig();
+		}
+		
+		if(getConfig().get("settings.allowsprinting") == null)
+		{
+			getConfig().set("settings.allowsprinting", false);
+			System.out.println(Plugin + "[Config] Setting default allow sprinting [beta]");
+			saveConfig();
+		}
+		
+		if(getConfig().get("settings.block-placing-tnt") == null)
+		{
+			getConfig().set("settings.block-placing-tnt", true);
+			System.out.println(Plugin + "[Config] Setting default block placing of tnt");
+			saveConfig();
+		}
+		
+		if(getConfig().get("settings.block-placing-lava") == null)
+		{
+			getConfig().set("settings.block-placing-lava", true);
+			System.out.println(Plugin + "[Config] Setting default block placing of lava");
+			saveConfig();
+		}
+		
+	}
 	public void SetupCommands()
 	{
 		
@@ -123,7 +227,7 @@ public class CommandBin extends JavaPlugin {
 		getCommand("strike").setExecutor(PlayerCommands);
 		getCommand("heal").setExecutor(PlayerCommands);
 		getCommand("feed").setExecutor(PlayerCommands);
-		getCommand("godmode").setExecutor(PlayerCommands);
+		getCommand("god").setExecutor(PlayerCommands);
 		getCommand("facepalm").setExecutor(PlayerCommands);
 		getCommand("explode").setExecutor(PlayerCommands);
 		getCommand("light").setExecutor(PlayerCommands);
@@ -133,12 +237,15 @@ public class CommandBin extends JavaPlugin {
 		getCommand("lightningstick").setExecutor(PlayerCommands);
 		getCommand("slap").setExecutor(PlayerCommands);
 		getCommand("msg").setExecutor(PlayerCommands);
-		getCommand("clearinv").setExecutor(PlayerCommands);
+		getCommand("clear").setExecutor(PlayerCommands);
 		getCommand("kill").setExecutor(PlayerCommands);
 		getCommand("i").setExecutor(PlayerCommands);
 		getCommand("time").setExecutor(PlayerCommands);
 		getCommand("nick").setExecutor(PlayerCommands);
 		getCommand("setxp").setExecutor(PlayerCommands);
+		getCommand("up").setExecutor(PlayerCommands);
+		getCommand("unlimited").setExecutor(PlayerCommands);
+		getCommand("delunlimited").setExecutor(PlayerCommands);
 		//
 		
 		// Snowman Commands
@@ -179,100 +286,13 @@ public class CommandBin extends JavaPlugin {
 		getCommand("setwarp").setExecutor(WarpCommands);
 		getCommand("delwarp").setExecutor(WarpCommands);
 		//
+		
+		
 	}
 	
 	public void onDisable()
 	{
 		System.out.println(Plugin + "Disabled successfully.");
-	}
-	
-	public void ConfigDefaultValues()
-	{
-		
-		getConfig().options().header(
-				"###############################\n" + 
-				"Default Configuration File for CommandBin \n" +
-				"CommandBin was created by CainFoool\n" +
-				"All the values generated below are default and are fully editable.\n" +
-				"Feel free to edit them as you plead.\n" +
-				"Every time this plugin starts up, this text\n" +
-				"Will be generated every time (sorry :p)" +
-				"\n\n" +
-				"CainFoool\n" +
-				"###############################\n\n");
-		
-		if(getConfig().getString("settings.shutdownmessage") == null)
-		{
-			getConfig().set("settings.shutdownmessage", "The server is going down for shutdown!");
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.broadcastkick") == null)
-		{
-			getConfig().set("settings.broadcastkick", true);
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.broadcastban") == null)
-		{
-			getConfig().set("settings.broadcastban", true);
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.playerismuted") == null)
-		{
-			getConfig().set("settings.playerismuted", "You are muted, shh!");
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.playercannotusecommands") == null)
-		{
-			getConfig().set("settings.playercannotusecommands", "You cannot use commands. Stop trying!");
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.joinmessage") == null)
-		{
-			getConfig().set("settings.joinmessage", "has joined the game");
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.leavemessage") == null)
-		{
-			getConfig().set("settings.leavemessage", "has left the game");
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.dropxpondeath") == null)
-		{
-			getConfig().set("settings.dropxpondeath", false);
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.craftbukkitversion") == null)
-		{
-			getConfig().set("settings.craftbukkitversion", getServer().getVersion().toString());
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.consolename") == null)
-		{
-			getConfig().set("settings.consolename", "Console");
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.endermangriefing") == null)
-		{
-			getConfig().set("settings.endermangriefing", false);
-			saveConfig();
-		}
-		
-		if(getConfig().getString("settings.allowsprinting") == null)
-		{
-			getConfig().set("settings.allowsprinting", false);
-			saveConfig();
-		}
-		return;
 	}
 	
 	public boolean pCheck(Player player, String l)

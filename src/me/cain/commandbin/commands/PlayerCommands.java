@@ -4,6 +4,7 @@ import me.cain.commandbin.CommandBin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -249,11 +250,20 @@ public class PlayerCommands implements CommandExecutor
 		{
 			if(args.length < 1)
 			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.heal.others"))
+				{
+					sender.setHealth(20);
+					sender.sendMessage(ChatColor.GREEN + "Your health bar is now full!");
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
 				sender.sendMessage("/" + l.toString() + " [player]");
 			}
 			else
 			{
-				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.heal"))
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.heal.others"))
 				{
 					Player target = Bukkit.getServer().getPlayer(args[0]);
 					if(target != null)
@@ -278,11 +288,19 @@ public class PlayerCommands implements CommandExecutor
 		{
 			if(args.length < 1)
 			{
-				sender.sendMessage("/" + l.toString() + " [player]");
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.feed"))
+				{
+					sender.setFoodLevel(20);
+					sender.sendMessage(ChatColor.GREEN + "Your food bar is now full!");
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
 			}
 			else
 			{
-				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.feed"))
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.feed.others"))
 				{
 					Player target = Bukkit.getServer().getPlayer(args[0]);
 					if(target != null)
@@ -303,7 +321,7 @@ public class PlayerCommands implements CommandExecutor
 			}
 		}
 		
-		if(l.equalsIgnoreCase("godmode"))
+		if(l.equalsIgnoreCase("god"))
 		{
 			if(args.length < 1)
 			{
@@ -311,7 +329,7 @@ public class PlayerCommands implements CommandExecutor
 			}
 			else
 			{
-				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.godmode"))
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.god"))
 				{
 					if(args[0].equalsIgnoreCase("on"))
 					{
@@ -536,11 +554,11 @@ public class PlayerCommands implements CommandExecutor
 			}
 		}
 		
-		if(l.equalsIgnoreCase("clearinv"))
+		if(l.equalsIgnoreCase("clear"))
 		{
 			if(args.length < 1)
 			{
-				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.clearinv"))
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.clear"))
 				{
 					sender.getInventory().clear();
 					sender.sendMessage(ChatColor.GREEN + "Inventory cleared!");
@@ -553,7 +571,7 @@ public class PlayerCommands implements CommandExecutor
 			else
 			{
 				Player target = Bukkit.getServer().getPlayer(args[0]);
-				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.clearinv.others"))
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.clear.others"))
 				{
 					if(target != null)
 					{
@@ -663,6 +681,8 @@ public class PlayerCommands implements CommandExecutor
 							target.setDisplayName(args[1]);
 							sender.sendMessage(ChatColor.GREEN + target.getName() + "'s name changed to " + args[1]);
 							target.sendMessage(ChatColor.GREEN + sender.getName() + " changed your name to " + args[1]);
+							CommandBin.plugin.getConfig().set(target.getName() + ".nickname", args[1]);
+							CommandBin.plugin.saveConfig();
 						}
 						else
 						{
@@ -740,7 +760,87 @@ public class PlayerCommands implements CommandExecutor
 			}
 		}
 		
+		if(l.equalsIgnoreCase("up"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [blocks]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.up"))
+				{
+						sender.getLocation().getBlock().getRelative(0, Integer.parseInt(args[0]), 0).setType(Material.GLASS);
+						Location tpblock = sender.getLocation().getBlock().getRelative(0, Integer.parseInt(args[0])+2, 0).getLocation();
+						sender.teleport(tpblock);
+						sender.sendMessage(ChatColor.RED + "You went up " + args[0] + " blocks!");
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
 		
+		if(l.equalsIgnoreCase("unlimited"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.unlimited"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						CommandBin.plugin.getConfig().set(target.getName() + ".unlimited", true);
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " has given you unlimited block usage!");
+						sender.sendMessage(ChatColor.GREEN + "Successfully gave " + target.getName() + " unlimited block usage!");
+						CommandBin.plugin.saveConfig();
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("delunlimited"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.unlimited"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						CommandBin.plugin.getConfig().set(target.getName() + ".unlimited", false);
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " has removed your unlimited block usage!");
+						sender.sendMessage(ChatColor.GREEN + "Successfully removed " + target.getName() + "'s unlimited block usage!");
+						CommandBin.plugin.saveConfig();
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
 		return false;
 	}
 

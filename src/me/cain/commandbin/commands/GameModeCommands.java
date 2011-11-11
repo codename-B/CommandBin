@@ -36,7 +36,7 @@ public class GameModeCommands implements CommandExecutor
 			{
 
 				Player target = Bukkit.getServer().getPlayer(args[0]);
-				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.creative"))
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.creative.others"))
 				{
 					if(target != null)
 					{
@@ -71,7 +71,7 @@ public class GameModeCommands implements CommandExecutor
 			}
 			else
 			{
-				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.creative"))
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.survival.others"))
 				{
 					Player target = Bukkit.getServer().getPlayer(args[0]);
 					if(target != null)

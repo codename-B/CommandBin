@@ -1,5 +1,5 @@
 name: CommandBin
-version: 1.21
+version: 1.22
 author: CainFoool
 main: me.cain.commandbin.CommandBin
 commands:
@@ -57,7 +57,7 @@ commands:
        description: 'Freeze a player'
    unfreeze:
        description: 'Unfreeze a player'
-   godmode:
+   god:
        description: 'Set yourself to god enabled or disabled'
    facepalm:
        description: 'Facepalm'
@@ -87,7 +87,7 @@ commands:
        description: 'The lightning stick!'
    slap:
        description: 'Slap a player'
-   clearinv:
+   clear:
        description: 'Clear your inventory'
    who:
        description: 'Details of a player'
@@ -115,3 +115,9 @@ commands:
        description: 'Delete a warp'
    kill:
        description: 'Kill a player'
+   up:
+       description: 'Go up X amount of blocks'
+   unlimited:
+       description: 'Unlimited amount of blocks'
+   delunlimited:
+       description: 'Remove unlimited blocks'

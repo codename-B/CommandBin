@@ -2,6 +2,7 @@ package me.cain.commandbin.listeners;
 
 import me.cain.commandbin.CommandBin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -10,6 +11,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerListener;
@@ -81,6 +83,11 @@ public class PListener extends PlayerListener {
 				e.setCancelled(true);
 			}
 		}
+		String chatformat = CommandBin.plugin.getConfig().getString("settings.chatformat");
+		String process = chatformat.replace("+name+", e.getPlayer().getName());
+						 chatformat.replace("+message+", e.getMessage());
+		//Bukkit.getServer().broadcastMessage(process);
+		//e.setCancelled(true);
 	}
 	
 	public void onPlayerInteract(PlayerInteractEvent e)
@@ -133,6 +140,11 @@ public class PListener extends PlayerListener {
 		{
 			e.setJoinMessage(ChatColor.YELLOW + e.getPlayer().getName() + " " + CommandBin.plugin.getConfig().get("settings.joinmessage").toString());
 		}
+		
+		if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".nickname") != null)
+		{
+			e.getPlayer().setDisplayName(CommandBin.plugin.getConfig().getString(e.getPlayer().getName() + ".nickname"));
+		}
 		return;
 	}
 	
@@ -159,5 +171,4 @@ public class PListener extends PlayerListener {
 		e.getPlayer().teleport(e.getPlayer().getWorld().getSpawnLocation());
 		return;
 	}
-
 }
