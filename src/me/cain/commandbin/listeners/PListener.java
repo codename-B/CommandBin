@@ -83,9 +83,6 @@ public class PListener extends PlayerListener {
 				e.setCancelled(true);
 			}
 		}
-		String chatformat = CommandBin.plugin.getConfig().getString("settings.chatformat");
-		String process = chatformat.replace("+name+", e.getPlayer().getName());
-						 chatformat.replace("+message+", e.getMessage());
 		//Bukkit.getServer().broadcastMessage(process);
 		//e.setCancelled(true);
 	}
