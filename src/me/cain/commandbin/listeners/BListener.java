@@ -43,7 +43,7 @@ public class BListener extends BlockListener {
 		{
 			if(CommandBin.plugin.getConfig().get("settings.block-placing-lava").equals(true))
 			{
-				if(e.getBlock().getType() == Material.LAVA)
+				if(e.getBlock().getType() == Material.LAVA || e.getBlock().getType() == Material.LAVA_BUCKET)
 				{
 					if(CommandBin.plugin.pCheck(e.getPlayer(), "CommandBin.general.lavabypass"))
 					{

@@ -27,22 +27,14 @@ public class PListener extends PlayerListener {
 	
 	public void onPlayerMove(PlayerMoveEvent e)
 	{
-		if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".frozen") != null)
-		{
-			if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".frozen").equals(true))
+			if(CommandBin.plugin.getConfig().getBoolean(e.getPlayer().getName() + ".frozen"))
 			{
 				e.setCancelled(true);
 			}
-			
-		}
-		
-		if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".smoke") != null)
-		{
-			if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".smoke").equals(true))
+			if(CommandBin.plugin.getConfig().getBoolean(e.getPlayer().getName() + ".smoke"))
 			{
 				e.getPlayer().getWorld().playEffect(e.getPlayer().getLocation(), Effect.SMOKE, 5);
 			}
-		}
 		
 			if(CommandBin.plugin.getConfig().getBoolean(e.getPlayer().getName() + ".snowman"))
 			{
@@ -62,38 +54,27 @@ public class PListener extends PlayerListener {
 	
 	public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent e)
 	{
-		if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".handicapped") != null)
-		{
-			if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".handicapped").equals(true))
+			if(CommandBin.plugin.getConfig().getBoolean(e.getPlayer().getName() + ".handicapped"))
 			{
 				e.getPlayer().sendMessage(ChatColor.RED + CommandBin.plugin.getConfig().getString("settings.playercannotusecommands"));
 				e.setCancelled(true);
 			}
-		}
-		return;
 	}
 	
 	public void onPlayerChat(PlayerChatEvent e)
 	{
-		if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".muted") != null)
-		{
-			if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".muted").equals(true))
+			if(CommandBin.plugin.getConfig().getBoolean(e.getPlayer().getName() + ".muted"))
 			{
 				e.getPlayer().sendMessage(ChatColor.RED + CommandBin.plugin.getConfig().getString("settings.playerismuted"));
 				e.setCancelled(true);
 			}
-		}
-		//Bukkit.getServer().broadcastMessage(process);
-		//e.setCancelled(true);
 	}
 	
 	public void onPlayerInteract(PlayerInteractEvent e)
 	{
 		if(e.getAction() == Action.RIGHT_CLICK_AIR)
 		{
-			if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".explosionstick") != null)
-			{
-				if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".explosionstick").equals(true))
+				if(CommandBin.plugin.getConfig().getBoolean(e.getPlayer().getName() + ".explosionstick"))
 				{
 					if(e.getPlayer().getItemInHand().getType() == Material.STICK)
 					{
@@ -101,11 +82,8 @@ public class PListener extends PlayerListener {
 						e.getPlayer().getWorld().createExplosion(block, 8);
 					}
 				}
-			}
-			
-			if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".lightningstick") != null)
-			{
-				if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".lightningstick").equals(true))
+
+				if(CommandBin.plugin.getConfig().getBoolean(e.getPlayer().getName() + ".lightningstick"))
 				{
 					if(e.getPlayer().getItemInHand().getType() == Material.STICK)
 					{
@@ -114,21 +92,17 @@ public class PListener extends PlayerListener {
 					}
 				}
 			}
-		}
 		return;
 	}
 	
 	public void onPlayerLogin(PlayerLoginEvent e)
 	{
-		if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".banned") != null)
-		{
-			if(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".banned").equals(true))
+			if(CommandBin.plugin.getConfig().getBoolean(e.getPlayer().getName() + ".banned"))
 			{
 				e.setKickMessage(CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".banreason").toString());
 				e.disallow(Result.KICK_BANNED, "You were banned for: " + ChatColor.GRAY + CommandBin.plugin.getConfig().get(e.getPlayer().getName() + ".banreason").toString());
 			}
-		}
-		return;
+			return;
 	}
 	
 	public void onPlayerJoin(PlayerJoinEvent e)
