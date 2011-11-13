@@ -1,5 +1,5 @@
 name: CommandBin
-version: 1.22
+version: 1.23
 author: CainFoool
 main: me.cain.commandbin.CommandBin
 commands:
@@ -121,3 +121,9 @@ commands:
        description: 'Unlimited amount of blocks'
    delunlimited:
        description: 'Remove unlimited blocks'
+   torchbow:
+       description: 'Torch Bow'
+   mytime:
+       description: 'Set your time'
+   armour:
+       description: 'Give yourself armour'

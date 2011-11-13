@@ -2,7 +2,6 @@ package me.cain.commandbin.listeners;
 
 import me.cain.commandbin.CommandBin;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -11,7 +10,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerGameModeChangeEvent;
+import org.bukkit.event.player.PlayerEggThrowEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerListener;
@@ -57,6 +56,7 @@ public class PListener extends PlayerListener {
 					e.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN, 1).setType(Material.SNOW_BLOCK);
 				}
 			}
+			
 		return;
 	}
 	
@@ -166,6 +166,19 @@ public class PListener extends PlayerListener {
 	public void onPlayerRespawn(PlayerRespawnEvent e)
 	{
 		e.getPlayer().teleport(e.getPlayer().getWorld().getSpawnLocation());
+		return;
+	}
+	
+	public void onPlayerEggThrow(PlayerEggThrowEvent e)
+	{
+		if(CommandBin.plugin.getConfig().getBoolean("settings.teleportonthrowegg"))
+		{
+			if(CommandBin.plugin.pCheck(e.getPlayer(), "CommandBin.general.canteleportonthrowegg"))
+			{
+				e.getPlayer().teleport(e.getEgg().getLocation());
+				e.getPlayer().sendMessage(ChatColor.GREEN + "Teleported to the egg!");
+			}
+		}
 		return;
 	}
 }

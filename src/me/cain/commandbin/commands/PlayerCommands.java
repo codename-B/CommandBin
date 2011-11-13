@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
@@ -839,6 +840,136 @@ public class PlayerCommands implements CommandExecutor
 				{
 					sender.sendMessage(CommandBin.plugin.NoPermission);
 				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("mytime"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [day/night/reset]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.mytime"))
+				{
+					if(args[0].equalsIgnoreCase("day"))
+					{
+						sender.setPlayerTime(0, false);
+						sender.sendMessage(ChatColor.GREEN + "You set your time to day!");
+					}
+					
+					if(args[0].equalsIgnoreCase("night"))
+					{
+						sender.setPlayerTime(100000000, false);
+						sender.sendMessage(ChatColor.GREEN + "You set your time to night!");
+					}
+					
+					if(args[0].equalsIgnoreCase("reset"))
+					{
+						sender.setPlayerTime(sender.getWorld().getTime(), true);
+						sender.sendMessage(ChatColor.GREEN + "You reset your time to the server time!");
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+					}
+				}
+			}
+		
+		if(l.equalsIgnoreCase("armour"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [leather, iron, diamond, gold, chainmail");
+			}
+			else
+			{
+				if(args[0].equalsIgnoreCase("leather"))
+				{
+					if(CommandBin.plugin.pCheck(sender, "CommandBin.general.armour.leather"))
+					{
+						sender.getInventory().setHelmet(new ItemStack(Material.LEATHER_HELMET, 1));
+						sender.getInventory().setChestplate(new ItemStack(Material.LEATHER_CHESTPLATE, 1));
+						sender.getInventory().setLeggings(new ItemStack(Material.LEATHER_LEGGINGS, 1));
+						sender.getInventory().setBoots(new ItemStack(Material.LEATHER_BOOTS, 1));
+						sender.sendMessage(ChatColor.GREEN + "You received " + args[0] + " armour!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.NoPermission);
+					}
+				}
+				
+				if(args[0].equalsIgnoreCase("iron"))
+				{
+					if(CommandBin.plugin.pCheck(sender, "CommandBin.general.armour.iron"))
+					{
+						sender.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
+						sender.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
+						sender.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
+						sender.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS, 1));
+						sender.sendMessage(ChatColor.GREEN + "You received " + args[0] + " armour!");
+
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.NoPermission);
+					}
+				}
+				
+				if(args[0].equalsIgnoreCase("diamond"))
+				{
+					if(CommandBin.plugin.pCheck(sender, "CommandBin.general.armour.diamond"))
+					{
+						sender.getInventory().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
+						sender.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+						sender.getInventory().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
+						sender.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
+						sender.sendMessage(ChatColor.GREEN + "You received " + args[0] + " armour!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.NoPermission);
+					}
+				}
+				
+				if(args[0].equalsIgnoreCase("gold"))
+				{
+					if(CommandBin.plugin.pCheck(sender, "CommandBin.general.armour.gold"))
+					{
+						sender.getInventory().setHelmet(new ItemStack(Material.GOLD_HELMET, 1));
+						sender.getInventory().setChestplate(new ItemStack(Material.GOLD_CHESTPLATE, 1));
+						sender.getInventory().setLeggings(new ItemStack(Material.GOLD_LEGGINGS, 1));
+						sender.getInventory().setBoots(new ItemStack(Material.GOLD_BOOTS, 1));
+						sender.sendMessage(ChatColor.GREEN + "You received " + args[0] + " armour!");
+
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.NoPermission);
+					}
+				}
+				
+				if(args[0].equalsIgnoreCase("chainmail"))
+				{
+					if(CommandBin.plugin.pCheck(sender, "CommandBin.general.armour.chainmail"))
+					{
+						sender.getInventory().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET, 1));
+						sender.getInventory().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1));
+						sender.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS, 1));
+						sender.getInventory().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS, 1));
+						sender.sendMessage(ChatColor.GREEN + "You received " + args[0] + " armour!");
+
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.NoPermission);
+					}
+				}
+				
+				
 			}
 		}
 		return false;

@@ -301,6 +301,7 @@ public class ModerationCommands implements CommandExecutor
 						sender.sendMessage(ChatColor.GREEN + "Current World: " + ChatColor.WHITE + target.getWorld().getName());
 						sender.sendMessage(ChatColor.GREEN + "IP Address: " + ChatColor.WHITE + target.getAddress());
 						sender.sendMessage(ChatColor.GREEN + "Hostname: " + ChatColor.WHITE + target.getAddress().getHostName());
+						sender.sendMessage(ChatColor.GREEN + "Co-Ordinates: " + ChatColor.RED + target.getLocation().getX() + ", " + target.getLocation().getY() + ", " + target.getLocation().getZ());
 						if(!CommandBin.plugin.getServer().getVersion().contains("1337"))
 						{
 							sender.sendMessage("This server is not using the RB version of CraftBukkit. (1337)");

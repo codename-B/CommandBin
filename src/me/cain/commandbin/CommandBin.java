@@ -9,6 +9,7 @@ import me.cain.commandbin.commands.MobCommands;
 import me.cain.commandbin.commands.ModerationCommands;
 import me.cain.commandbin.commands.PlayerCommands;
 import me.cain.commandbin.commands.SnowmanCommands;
+import me.cain.commandbin.commands.TorchBowCommands;
 import me.cain.commandbin.commands.WarpCommands;
 import me.cain.commandbin.commands.WeatherCommands;
 import me.cain.commandbin.commands.WorldCommands;
@@ -23,6 +24,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event.Type;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.nijiko.permissions.PermissionHandler;
@@ -37,21 +39,25 @@ public class CommandBin extends JavaPlugin {
 	public void onEnable()
 	{
 				System.out.println(Plugin + "Enabled successfully.");
-				getServer().getPluginManager().registerEvent(Type.PLAYER_MOVE, new PListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.PLAYER_INTERACT, new PListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.ENTITY_DAMAGE, new EListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.PLAYER_COMMAND_PREPROCESS, new PListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.PLAYER_CHAT, new PListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.PLAYER_LOGIN, new PListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.PLAYER_JOIN, new PListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.PLAYER_QUIT, new PListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.ENTITY_DEATH, new EListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.ENDERMAN_PICKUP, new EnderListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.ENDERMAN_PLACE, new EnderListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.PLAYER_TOGGLE_SPRINT, new PListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.PLAYER_RESPAWN, new PListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.PLAYER_GAME_MODE_CHANGE, new PListener(), Priority.Normal, this);
-				getServer().getPluginManager().registerEvent(Type.BLOCK_PLACE, new BListener(), Priority.Normal, this);
+				PluginManager pm = getServer().getPluginManager();
+				pm.registerEvent(Type.PLAYER_MOVE, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PLAYER_INTERACT, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.ENTITY_DAMAGE, new EListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PLAYER_COMMAND_PREPROCESS, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PLAYER_CHAT, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PLAYER_LOGIN, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PLAYER_JOIN, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PLAYER_QUIT, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.ENTITY_DEATH, new EListener(), Priority.Normal, this);
+				pm.registerEvent(Type.ENDERMAN_PICKUP, new EnderListener(), Priority.Normal, this);
+				pm.registerEvent(Type.ENDERMAN_PLACE, new EnderListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PLAYER_TOGGLE_SPRINT, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PLAYER_RESPAWN, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PLAYER_GAME_MODE_CHANGE, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.BLOCK_PLACE, new BListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PLAYER_EGG_THROW, new PListener(), Priority.Normal, this);
+				pm.registerEvent(Type.ENTITY_EXPLODE, new EListener(), Priority.Normal, this);
+				pm.registerEvent(Type.PROJECTILE_HIT, new EListener(), Priority.Normal, this);
 				setupPermissions();
 				SetupCommands();
 				plugin = this;
@@ -172,6 +178,22 @@ public class CommandBin extends JavaPlugin {
 			saveConfig();
 		}
 		
+		if(getConfig().get("settings.teleportonthrowegg") == null)
+		{
+			getConfig().set("settings.teleportonthrowegg", false);
+			System.out.println(Plugin + "[Config] Setting default teleport on throw egg");
+			saveConfig();
+		}
+		
+		if(getConfig().get("settings.blockcreeperexplosions") == null)
+		{
+			getConfig().set("settings.blockcreeperexplosions", false);
+			System.out.println(Plugin + "[Config] Setting default block creeper explosions");
+			saveConfig();
+		}
+		
+		
+		
 	}
 	public void SetupCommands()
 	{
@@ -246,6 +268,8 @@ public class CommandBin extends JavaPlugin {
 		getCommand("up").setExecutor(PlayerCommands);
 		getCommand("unlimited").setExecutor(PlayerCommands);
 		getCommand("delunlimited").setExecutor(PlayerCommands);
+		getCommand("mytime").setExecutor(PlayerCommands);
+		getCommand("armour").setExecutor(PlayerCommands);
 		//
 		
 		// Snowman Commands
@@ -286,6 +310,10 @@ public class CommandBin extends JavaPlugin {
 		getCommand("setwarp").setExecutor(WarpCommands);
 		getCommand("delwarp").setExecutor(WarpCommands);
 		//
+		
+		// Torch Bow Commands
+		CommandExecutor tb = new TorchBowCommands();
+		getCommand("torchbow").setExecutor(tb);
 		
 		
 	}
