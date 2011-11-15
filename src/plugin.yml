@@ -127,3 +127,5 @@ commands:
        description: 'Set your time'
    armour:
        description: 'Give yourself armour'
+   cbhelp:
+       description: 'CommandBin Commands'

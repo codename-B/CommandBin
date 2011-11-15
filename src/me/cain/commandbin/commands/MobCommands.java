@@ -29,7 +29,11 @@ public class MobCommands implements CommandExecutor
 				{
 					if(CreatureType.valueOf(args[0].toUpperCase()) != null)
 					{
-						sender.getWorld().spawnCreature(sender.getTargetBlock(null, 0).getLocation(), CreatureType.valueOf(args[0].toUpperCase()));
+						int mob = Integer.parseInt(args[1]);
+						for(int i = 0; i < mob; i++)
+						{
+							sender.getWorld().spawnCreature(sender.getTargetBlock(null, 0).getLocation(), CreatureType.valueOf(args[0].toUpperCase()));
+						}
 						sender.sendMessage(ChatColor.GREEN + "Spawned a " + args[0]);
 					}
 					else

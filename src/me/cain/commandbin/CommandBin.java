@@ -39,7 +39,7 @@ public class CommandBin extends JavaPlugin {
 	{
 		Plugin permissionsPlugin = this.getServer().getPluginManager().getPlugin("Permissions");
 	    if (permissionsPlugin == null) {
-	    	return player.hasPermission(l);
+	    	return player.hasPermission(l) || player.isOp();
 	    }
 	    else
 	    {

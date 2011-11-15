@@ -127,5 +127,9 @@ public class CommandRegistration
 		CommandBin.plugin.getCommand("torchbow").setExecutor(tb);
 		//
 		
+		// Help Page Commands
+		CommandExecutor help = new HelpCommands();
+		CommandBin.plugin.getCommand("cbhelp").setExecutor(help);
+		
 	}
 }
