@@ -31,7 +31,7 @@ public class ModerationCommands implements CommandExecutor
 				{
 					if(target != null)
 					{
-						target.kickPlayer("You have been kicked from the server!");
+						target.kickPlayer(args[1].toString());
 						if(CommandBin.plugin.getConfig().get("settings.broadcastkick").equals(true))
 						{
 							Bukkit.getServer().broadcastMessage(ChatColor.RED + sender.getName() + " has kicked " + target.getName());

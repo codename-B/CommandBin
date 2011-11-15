@@ -52,9 +52,12 @@ public class EListener extends EntityListener {
 		
 		if(e.getEntity() instanceof Arrow)
 		{
-			if(CommandBin.plugin.getConfig().getBoolean(((Player)((Arrow) e.getEntity()).getShooter()).getName() + ".torchbow"))
+			if(((Arrow) e.getEntity()).getShooter() instanceof Player)
 			{
-			e.getEntity().getLocation().getBlock().setType(Material.TORCH);
+				if(CommandBin.plugin.getConfig().getBoolean(((Player)((Arrow) e.getEntity()).getShooter()).getName() + ".torchbow"))
+				{
+				e.getEntity().getLocation().getBlock().setType(Material.TORCH);
+				}
 			}
 		}
 		

@@ -31,6 +31,7 @@ public class PListener extends PlayerListener {
 			{
 				e.setCancelled(true);
 			}
+			
 			if(CommandBin.plugin.getConfig().getBoolean(e.getPlayer().getName() + ".smoke"))
 			{
 				e.getPlayer().getWorld().playEffect(e.getPlayer().getLocation(), Effect.SMOKE, 5);
