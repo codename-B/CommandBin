@@ -19,7 +19,6 @@ import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.event.player.PlayerToggleSprintEvent;
 
 public class PListener extends PlayerListener {
 
@@ -125,15 +124,6 @@ public class PListener extends PlayerListener {
 		if(CommandBin.plugin.getConfig().get("settings.leavemessage") != null)
 		{
 			e.setQuitMessage(ChatColor.YELLOW + e.getPlayer().getName() + " " + CommandBin.plugin.getConfig().get("settings.leavemessage").toString());
-		}
-		return;
-	}
-	
-	public void onPlayerToggleSprint(PlayerToggleSprintEvent e)
-	{
-		if(CommandBin.plugin.getConfig().get("settings.allowsprinting").equals(false))
-		{
-			e.setCancelled(true);
 		}
 		return;
 	}

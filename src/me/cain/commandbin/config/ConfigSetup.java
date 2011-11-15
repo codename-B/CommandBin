@@ -99,13 +99,6 @@ public class ConfigSetup
 			CommandBin.plugin.saveConfig();
 		}
 		
-		if(CommandBin.plugin.getConfig().get("settings.allowsprinting") == null)
-		{
-			CommandBin.plugin.getConfig().set("settings.allowsprinting", false);
-			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default allow sprinting [beta]");
-			CommandBin.plugin.saveConfig();
-		}
-		
 		if(CommandBin.plugin.getConfig().get("settings.block-placing-tnt") == null)
 		{
 			CommandBin.plugin.getConfig().set("settings.block-placing-tnt", true);
