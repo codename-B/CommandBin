@@ -1,4 +1,4 @@
-package me.cain.CommandBin.config;
+package me.cain.commandbin.config;
 
 import me.cain.commandbin.CommandBin;
 

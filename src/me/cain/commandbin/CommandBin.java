@@ -1,7 +1,7 @@
 package me.cain.commandbin;
 
-import me.cain.CommandBin.config.ConfigSetup;
 import me.cain.commandbin.commands.CommandRegistration;
+import me.cain.commandbin.config.ConfigSetup;
 import me.cain.commandbin.listeners.EventRegistration;
 
 import org.bukkit.ChatColor;
