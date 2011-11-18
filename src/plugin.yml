@@ -105,8 +105,6 @@ commands:
        description: 'Create a warp'
    warp:
        description: 'Teleport to a warp'
-   say:
-       description: 'Say a message'
    nick:
        description: 'Set somebodys nickname'
    setxp:
@@ -129,3 +127,5 @@ commands:
        description: 'Give yourself armour'
    cbhelp:
        description: 'CommandBin Commands'
+   explosionbow:
+       description: 'The dangerous explosion bow'

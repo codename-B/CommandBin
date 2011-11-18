@@ -85,10 +85,10 @@ public class ConfigSetup
 			CommandBin.plugin.saveConfig();
 		}
 		
-		if(CommandBin.plugin.getConfig().getString("settings.consolename", null) == null)
+		if(CommandBin.plugin.getConfig().get("settings.spawn-mob-max-amount") == null)
 		{
-			CommandBin.plugin.getConfig().set("settings.consolename", "Console");
-			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default Console Name");
+			CommandBin.plugin.getConfig().set("settings.spawn-mob-max-amount", 100);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default /spawnmob max amount");
 			CommandBin.plugin.saveConfig();
 		}
 		

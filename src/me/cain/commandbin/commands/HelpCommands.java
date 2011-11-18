@@ -96,8 +96,8 @@ public class HelpCommands implements CommandExecutor
 						sender.sendMessage("/warp [name] - Teleport to a warp");
 						sender.sendMessage("/delwarp [name] - Remove a warp");
 						sender.sendMessage("/nick [player] [nickname] - Set a player's nickname");
-						sender.sendMessage("/say [message] - Say something");
 						sender.sendMessage("/setxp [player] [xp] - Set your experience points");
+						sender.sendMessage("/armour [iron/gold/diamond/leather/chainmail] - Nuff said.");
 						sender.sendMessage("/kill [player] - Kill a player");
 						sender.sendMessage("/up [amount] - Go up [x] amount of blocks");
 					}
@@ -105,7 +105,6 @@ public class HelpCommands implements CommandExecutor
 					{
 						sender.sendMessage("/unlimited - Place unlimited blocks");
 						sender.sendMessage("/delunlimited - Stop placement of unlimited blocks");
-						sender.sendMessage("/armour [iron/gold/diamond/leather/chainmail] - Nuff said.");
 					}
 				}
 				else

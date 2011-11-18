@@ -19,7 +19,7 @@ public class ModerationCommands implements CommandExecutor
 		
 		if(l.equalsIgnoreCase("kick"))
 		{
-			if(args.length < 1)
+			if(args.length < 2)
 			{
 				sender.sendMessage("/" + l.toString() + " [player]");
 			}
@@ -323,27 +323,48 @@ public class ModerationCommands implements CommandExecutor
 			}
 		}
 		
-		if(l.equalsIgnoreCase("say"))
+		/*
+		 if(l.equalsIgnoreCase("say"))
 		{
-			if(args.length < 1)
+			if(sender instanceof Player)
 			{
-				sender.sendMessage("/" + l.toString() + " [message]");
-			}
-			else
-			{
-				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.say"))
+				if(args.length < 1)
 				{
-					StringBuilder x = new StringBuilder();
-					int x2;
-					for (x2=0; x2 < args.length; x2++ ) {
-						x.append(args[x2]).append(" ");
-					}
+					sender.sendMessage("/" + l.toString() + " [message]");
+				}
+				else
+				{
+					if(CommandBin.plugin.pCheck(sender, "CommandBin.general.say"))
 					{
-						Bukkit.getServer().broadcastMessage("<" + ChatColor.RED + CommandBin.plugin.getConfig().get("settings.consolename").toString() + ChatColor.WHITE + "> " + x.toString().trim());
+						StringBuilder x = new StringBuilder();
+						int x2;
+						for (x2=0; x2 < args.length; x2++ ) {
+							x.append(args[x2]).append(" ");
+						}
+						{
+							Bukkit.getServer().broadcastMessage("<" + ChatColor.RED + CommandBin.plugin.getConfig().get("settings.consolename").toString() + ChatColor.WHITE + "> " + x.toString().trim());
+						}
 					}
 				}
 			}
-		}
+			else
+			{
+				if(args.length < 1)
+				{
+					sender.sendMessage("/" + l.toString() + " [message]");
+				}
+				else
+				{
+					StringBuilder x = new StringBuilder();
+					int x2;
+					for(x2=0; x2 < args.length; x2++ ) {
+						x.append(args[x2]).append(" ");
+					}
+					Bukkit.getServer().broadcastMessage(x.toString().trim());
+				}
+			}
+	}
+	*/
 		
 		return false;
 	}

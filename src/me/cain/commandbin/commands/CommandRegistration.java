@@ -101,7 +101,6 @@ public class CommandRegistration
 		CommandBin.plugin.getCommand("mute").setExecutor(ModCommands);
 		CommandBin.plugin.getCommand("unmute").setExecutor(ModCommands);
 		CommandBin.plugin.getCommand("who").setExecutor(ModCommands);
-		CommandBin.plugin.getCommand("say").setExecutor(ModCommands);
 		//
 		
 		// Spawn Mob Commands
@@ -130,6 +129,12 @@ public class CommandRegistration
 		// Help Page Commands
 		CommandExecutor help = new HelpCommands();
 		CommandBin.plugin.getCommand("cbhelp").setExecutor(help);
+		//
+		
+		// Explosion Bow Commands
+		CommandExecutor ex = new ExplosionBowCommands();
+		CommandBin.plugin.getCommand("explosionbow").setExecutor(ex);
+		//
 		
 	}
 }

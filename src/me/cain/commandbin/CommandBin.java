@@ -23,7 +23,12 @@ public class CommandBin extends JavaPlugin {
 	public void onEnable()
 	{
 		plugin = this;
+		setupCommandBin();
 		System.out.println(Plugin + "Enabled successfully.");
+	}
+	
+	public void setupCommandBin()
+	{
 		EventRegistration.setup();
 		setupPermissions();
 		CommandRegistration.SetupCommands();
