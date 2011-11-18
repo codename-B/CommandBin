@@ -127,6 +127,51 @@ public class ConfigSetup
 			CommandBin.plugin.saveConfig();
 		}
 		
+		if(CommandBin.plugin.getConfig().get("settings.orebroadcast.coalore") == null)
+		{
+			CommandBin.plugin.getConfig().set("settings.orebroadcast.coalore", true);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default ore broadcast coal");
+			CommandBin.plugin.saveConfig();
+		}
+		
+		if(CommandBin.plugin.getConfig().get("settings.orebroadcast.ironore") == null)
+		{
+			CommandBin.plugin.getConfig().set("settings.orebroadcast.ironore", true);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default ore broadcast iron");
+			CommandBin.plugin.saveConfig();
+		}
+		
+		if(CommandBin.plugin.getConfig().get("settings.orebroadcast.goldore") == null)
+		{
+			CommandBin.plugin.getConfig().set("settings.orebroadcast.goldore", true);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default ore broadcast gold");
+			CommandBin.plugin.saveConfig();
+		}
+		
+		if(CommandBin.plugin.getConfig().get("settings.orebroadcast.diamondore") == null)
+		{
+			CommandBin.plugin.getConfig().set("settings.orebroadcast.diamondore", true);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default ore broadcast diamond");
+			CommandBin.plugin.saveConfig();
+		}
+		
+		if(CommandBin.plugin.getConfig().get("settings.orebroadcast.redstoneore") == null)
+		{
+			CommandBin.plugin.getConfig().set("settings.orebroadcast.redstoneore", true);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default ore broadcast redstone");
+			CommandBin.plugin.saveConfig();
+		}
+		
+		if(CommandBin.plugin.getConfig().get("settings.orebroadcast.lapislazuliore") == null)
+		{
+			CommandBin.plugin.getConfig().set("settings.orebroadcast.lapislazuliore", true);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default ore broadcast lapis lazuli");
+			CommandBin.plugin.saveConfig();
+		}
+		
+		
+		
+		
 		
 		
 	}

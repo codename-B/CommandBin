@@ -136,5 +136,9 @@ public class CommandRegistration
 		CommandBin.plugin.getCommand("explosionbow").setExecutor(ex);
 		//
 		
+		// Crossbow Commands
+		CommandExecutor cb = new CrossBowCommands();
+		CommandBin.plugin.getCommand("crossbow").setExecutor(cb);
+		
 	}
 }

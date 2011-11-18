@@ -17,9 +17,9 @@ public class MobCommands implements CommandExecutor
 		Player sender = (Player) s;
 		if(l.equalsIgnoreCase("spawnmob"))
 		{
-			if(args.length < 1)
+			if(args.length < 2)
 			{
-				sender.sendMessage("/" + l.toString() + " [mobname]");
+				sender.sendMessage("/" + l.toString() + " [mobname] [amount]");
 				sender.sendMessage("Mobs: chicken, cow, pig, sheep, squid, enderman, pigman, wolf, cavespider, creeper, ghast, silverfish, skeleton, slime, spider, zombie, enderdragon");
 			}
 			else

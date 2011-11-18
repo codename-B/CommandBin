@@ -2,6 +2,7 @@ package me.cain.commandbin.listeners;
 
 import me.cain.commandbin.CommandBin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
@@ -45,7 +46,7 @@ public class EListener extends EntityListener {
 		return;
 	}
 	
-	public void onProjectileHit(ProjectileHitEvent e)
+	public void onProjectileHit(final ProjectileHitEvent e)
 	{
 		//Entity arrow = ((Arrow) e.getEntity()).getShooter();
 		//String p = ((Player) arrow).getName();
@@ -67,7 +68,57 @@ public class EListener extends EntityListener {
 					e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), 5);
 				}
 			}
-		}
+			
+			if(((Arrow) e.getEntity()).getShooter() instanceof Player)
+			{
+				if(CommandBin.plugin.getConfig().getBoolean(((Player)((Arrow) e.getEntity()).getShooter()).getName() + ".crossbow"))
+				{
+					e.getEntity().getLocation().getBlock().setType(Material.REDSTONE_TORCH_ON);
+					Bukkit.getScheduler().scheduleAsyncDelayedTask(CommandBin.plugin, new Runnable() 
+					{
+						public void run()
+						{
+							e.getEntity().getLocation().getBlock().setType(Material.REDSTONE_TORCH_OFF);
+							Bukkit.getScheduler().scheduleAsyncDelayedTask(CommandBin.plugin, new Runnable() 
+							{
+								public void run()
+								{
+									e.getEntity().getLocation().getBlock().setType(Material.REDSTONE_TORCH_ON);
+									Bukkit.getScheduler().scheduleAsyncDelayedTask(CommandBin.plugin, new Runnable() 
+									{
+										public void run()
+										{
+											e.getEntity().getLocation().getBlock().setType(Material.REDSTONE_TORCH_OFF);
+											Bukkit.getScheduler().scheduleAsyncDelayedTask(CommandBin.plugin, new Runnable() 
+											{
+												public void run()
+												{
+													e.getEntity().getLocation().getBlock().setType(Material.REDSTONE_TORCH_ON);
+													Bukkit.getScheduler().scheduleAsyncDelayedTask(CommandBin.plugin, new Runnable() 
+													{
+														public void run()
+														{
+															e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), 5);
+														}
+													}, 
+													5L);
+												}
+											}, 
+											20L);
+										}
+									}, 
+									20L);
+								}
+							}, 
+							20L);
+						}
+						
+					}, 
+					20L);
+					
+					}
+				}
+			}
 		
 		return;
 	}

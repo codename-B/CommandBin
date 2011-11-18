@@ -2,8 +2,10 @@ package me.cain.commandbin.listeners;
 
 import me.cain.commandbin.CommandBin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
@@ -59,6 +61,58 @@ public class BListener extends BlockListener {
 		}
 		
 		
+		return;
+	}
+	
+	public void onBlockBreak(BlockBreakEvent e)
+	{
+		if(CommandBin.plugin.getConfig().getBoolean("settings.orebroadcast.coalore"))
+		{
+			if(e.getBlock().getType() == Material.COAL_ORE)
+			{
+				Bukkit.getServer().broadcastMessage(ChatColor.GRAY + e.getPlayer().getName() + " mined some Coal Ore!");
+			}
+		}
+		
+		if(CommandBin.plugin.getConfig().getBoolean("settings.orebroadcast.ironore"))
+		{
+			if(e.getBlock().getType() == Material.IRON_ORE)
+			{
+				Bukkit.getServer().broadcastMessage(e.getPlayer().getName() + " mined some Iron Ore!");
+			}
+		}
+		
+		if(CommandBin.plugin.getConfig().getBoolean("settings.orebroadcast.goldore"))
+		{
+			if(e.getBlock().getType() == Material.GOLD_ORE)
+			{
+				Bukkit.getServer().broadcastMessage(ChatColor.GOLD + e.getPlayer().getName() + " mined some Gold Ore!");
+			}
+		}
+		
+		if(CommandBin.plugin.getConfig().getBoolean("settings.orebroadcast.diamondore"))
+		{
+			if(e.getBlock().getType() == Material.DIAMOND_ORE)
+			{
+				Bukkit.getServer().broadcastMessage(ChatColor.AQUA + e.getPlayer().getName() + " mined some Diamond Ore!");
+			}
+		}
+		
+		if(CommandBin.plugin.getConfig().getBoolean("settings.orebroadcast.redstoneore"))
+		{
+			if(e.getBlock().getType() == Material.REDSTONE_ORE)
+			{
+				Bukkit.getServer().broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " mined some Redstone Ore!");
+			}
+		}
+		
+		if(CommandBin.plugin.getConfig().getBoolean("settings.orebroadcast.lapislazuliore"))
+		{
+			if(e.getBlock().getType() == Material.LAPIS_ORE)
+			{
+				Bukkit.getServer().broadcastMessage(ChatColor.BLUE + e.getPlayer().getName() + " mined some Lapis Lazuli Ore!");
+			}
+		}
 		return;
 	}
 

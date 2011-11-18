@@ -1,5 +1,5 @@
 name: CommandBin
-version: 1.24
+version: 1.26
 author: CainFoool
 main: me.cain.commandbin.CommandBin
 commands:
@@ -129,3 +129,5 @@ commands:
        description: 'CommandBin Commands'
    explosionbow:
        description: 'The dangerous explosion bow'
+   crossbow:
+       description: 'Ohdear.'

@@ -27,6 +27,7 @@ public class EventRegistration
 		Bukkit.getServer().getPluginManager().registerEvent(Type.PLAYER_RESPAWN, new PListener(), Priority.Normal, CommandBin.plugin);
 		Bukkit.getServer().getPluginManager().registerEvent(Type.PLAYER_GAME_MODE_CHANGE, new PListener(), Priority.Normal, CommandBin.plugin);
 		Bukkit.getServer().getPluginManager().registerEvent(Type.BLOCK_PLACE, new BListener(), Priority.Normal, CommandBin.plugin);
+		Bukkit.getServer().getPluginManager().registerEvent(Type.BLOCK_BREAK, new BListener(), Priority.Normal, CommandBin.plugin);
 		Bukkit.getServer().getPluginManager().registerEvent(Type.PLAYER_EGG_THROW, new PListener(), Priority.Normal, CommandBin.plugin);
 		Bukkit.getServer().getPluginManager().registerEvent(Type.ENTITY_EXPLODE, new EListener(), Priority.Normal, CommandBin.plugin);
 		Bukkit.getServer().getPluginManager().registerEvent(Type.PROJECTILE_HIT, new EListener(), Priority.Normal, CommandBin.plugin);
