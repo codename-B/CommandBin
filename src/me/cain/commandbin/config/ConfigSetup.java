@@ -176,6 +176,13 @@ public class ConfigSetup
 			CommandBin.plugin.saveConfig();
 		}
 		
+		if(CommandBin.plugin.getConfig().get("settings.opscanseepms") == null)
+		{
+			CommandBin.plugin.getConfig().set("settings.opscanseepms", true);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default ops can see pms");
+			CommandBin.plugin.saveConfig();
+		}
+		
 		
 		
 		

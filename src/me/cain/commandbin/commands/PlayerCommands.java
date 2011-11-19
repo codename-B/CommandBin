@@ -678,6 +678,18 @@ public class PlayerCommands implements CommandExecutor
 						}
 						String from = ChatColor.RED + "[FROM " + sender.getName() + "] " + ChatColor.WHITE + ": " + x.toString().trim();
 						String to = ChatColor.RED + "[TO " + target.getName() + "] " + ChatColor.WHITE + ": " + x.toString().trim();
+						String op = ChatColor.DARK_RED + "[" + sender.getName() + " > " + target.getName() + "] " + x.toString().trim();
+						
+						if(CommandBin.plugin.getConfig().getBoolean("settings.opscanseepms"))
+						{
+							for(Player p: Bukkit.getServer().getOnlinePlayers())
+							{
+								if(p.isOp())
+								{
+									p.sendMessage(op);
+								}
+							}
+						}
 						
 						target.sendMessage(from);
 						sender.sendMessage(to);
