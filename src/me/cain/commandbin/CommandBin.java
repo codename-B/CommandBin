@@ -3,6 +3,7 @@ package me.cain.commandbin;
 import me.cain.commandbin.commands.CommandRegistration;
 import me.cain.commandbin.config.ConfigSetup;
 import me.cain.commandbin.listeners.EventRegistration;
+import me.cain.commandbin.statistics.Statistics;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -33,11 +34,13 @@ public class CommandBin extends JavaPlugin {
 		setupPermissions();
 		CommandRegistration.SetupCommands();
 		ConfigSetup.start();
+		Statistics.StartStats(); // Stats!
 	}
 	
 	public void onDisable()
 	{
 		System.out.println(Plugin + "Disabled successfully.");
+		Statistics.EndStats();
 	}
 	
 	public boolean pCheck(Player player, String l)
