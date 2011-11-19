@@ -46,6 +46,20 @@ public class AdministrationCommands implements CommandExecutor
 					sender.sendMessage(ChatColor.GREEN + "Author/Developer/Coder: CainFoool");
 					sender.sendMessage(ChatColor.RED + "Tester/Debugger: vicente947");
 				}
+				
+				if(args[0].equalsIgnoreCase("debug"))
+				{
+					if(CommandBin.plugin.pCheck(sender, "CommandBin.admin.debug"))
+					{
+						Runtime rt = Runtime.getRuntime();
+						sender.sendMessage(ChatColor.GREEN + "Max Memory: " + Math.floor(rt.maxMemory() / 1024.0 / 1024.0) + " MB");
+						sender.sendMessage(ChatColor.GREEN + "Free Memory: " + Math.floor(rt.freeMemory() / 1024.0 / 1024.0) + " MB");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.NoPermission);
+					}
+				}
 			}
 		}
 		return false;
