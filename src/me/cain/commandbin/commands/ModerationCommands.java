@@ -1,5 +1,11 @@
 package me.cain.commandbin.commands;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import me.cain.commandbin.CommandBin;
 
 import org.bukkit.Bukkit;
@@ -323,50 +329,43 @@ public class ModerationCommands implements CommandExecutor
 			}
 		}
 		
-		/*
-		 if(l.equalsIgnoreCase("say"))
+		if(l.equalsIgnoreCase("paid"))
 		{
-			if(sender instanceof Player)
+			if(args.length < 1)
 			{
-				if(args.length < 1)
-				{
-					sender.sendMessage("/" + l.toString() + " [message]");
-				}
-				else
-				{
-					if(CommandBin.plugin.pCheck(sender, "CommandBin.general.say"))
-					{
-						StringBuilder x = new StringBuilder();
-						int x2;
-						for (x2=0; x2 < args.length; x2++ ) {
-							x.append(args[x2]).append(" ");
-						}
-						{
-							Bukkit.getServer().broadcastMessage("<" + ChatColor.RED + CommandBin.plugin.getConfig().get("settings.consolename").toString() + ChatColor.WHITE + "> " + x.toString().trim());
-						}
-					}
-				}
+				sender.sendMessage("/" + l.toString() + " [player]");
 			}
 			else
 			{
-				if(args.length < 1)
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.paid"))
 				{
-					sender.sendMessage("/" + l.toString() + " [message]");
+					sender.sendMessage(ChatColor.GREEN + args[0] + " has paid: ");
+					hasPaid(sender, args[0].toString());
 				}
 				else
 				{
-					StringBuilder x = new StringBuilder();
-					int x2;
-					for(x2=0; x2 < args.length; x2++ ) {
-						x.append(args[x2]).append(" ");
-					}
-					Bukkit.getServer().broadcastMessage(x.toString().trim());
+					sender.sendMessage(CommandBin.plugin.NoPermission);
 				}
 			}
-	}
-	*/
+		}
 		
 		return false;
+	}
+	
+	public void hasPaid(Player p, String user)
+	{
+		try {
+		    URL url = new URL("http://minecraft.net/haspaid.jsp?user=" + user);
+
+		    BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+		    String str;
+		    while ((str = in.readLine()) != null) {
+		      p.sendMessage(str);
+		    }
+		    in.close();
+		} catch (MalformedURLException e) {
+		} catch (IOException e) {
+		}
 	}
 
 }
