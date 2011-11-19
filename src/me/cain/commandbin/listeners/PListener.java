@@ -116,6 +116,12 @@ public class PListener extends PlayerListener {
 		{
 			e.getPlayer().setDisplayName(CommandBin.plugin.getConfig().getString(e.getPlayer().getName() + ".nickname"));
 		}
+		
+		String motd = CommandBin.plugin.getConfig().getString("settings.message-of-the-day");
+		for(String str : motd.split("/break"))
+		{
+			e.getPlayer().sendMessage(str.replace("[p]", e.getPlayer().getName()));
+		}
 		return;
 	}
 	
