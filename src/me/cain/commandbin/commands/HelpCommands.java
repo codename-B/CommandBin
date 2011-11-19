@@ -105,6 +105,9 @@ public class HelpCommands implements CommandExecutor
 					{
 						sender.sendMessage("/unlimited - Place unlimited blocks");
 						sender.sendMessage("/delunlimited - Stop placement of unlimited blocks");
+						sender.sendMessage("/crossbow - The crossbow");
+						sender.sendMessage("/tp2p - Teleport one player to another");
+						sender.sendMessage("/put - Put a player in the location your looking at");
 					}
 				}
 				else

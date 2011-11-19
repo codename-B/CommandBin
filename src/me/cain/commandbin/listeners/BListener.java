@@ -71,7 +71,10 @@ public class BListener extends BlockListener {
 		{
 			if(e.getPlayer().getItemInHand().getType() == Material.DIAMOND_PICKAXE)
 			{
-				e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(Material.MOB_SPAWNER, 1));
+				if(e.getBlock().getType() == Material.MOB_SPAWNER)
+				{
+					e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(Material.MOB_SPAWNER, 1));
+				}
 			}
 		}
 		

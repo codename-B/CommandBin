@@ -29,23 +29,4 @@ public class Statistics
 				e.printStackTrace();
 			}
 	}
-	
-	public static void EndStats()
-	{
-		String url = String.format("http://cain.donaghey.x10.mx/usage/delcounter.php");
-		System.out.println(CommandBin.plugin.Plugin + "[Stats] Statistics ended!");
-		
-		try
-		{
-			new URL(url).openConnection().getInputStream();
-		} catch (MalformedURLException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }
