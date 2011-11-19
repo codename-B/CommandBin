@@ -1,5 +1,5 @@
 name: CommandBin
-version: 1.27
+version: 1.28
 author: CainFoool
 main: me.cain.commandbin.CommandBin
 commands:
