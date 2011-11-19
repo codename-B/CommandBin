@@ -66,6 +66,15 @@ public class BListener extends BlockListener {
 	
 	public void onBlockBreak(BlockBreakEvent e)
 	{
+		
+		if(CommandBin.plugin.getConfig().getBoolean("settings.mineablemobspawners"))
+		{
+			if(e.getPlayer().getItemInHand().getType() == Material.DIAMOND_PICKAXE)
+			{
+				e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(Material.MOB_SPAWNER, 1));
+			}
+		}
+		
 		if(CommandBin.plugin.getConfig().getBoolean("settings.orebroadcast.coalore"))
 		{
 			if(e.getBlock().getType() == Material.COAL_ORE)

@@ -90,7 +90,7 @@ public class ModerationCommands implements CommandExecutor
 			{
 				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.unban"))
 				{
-					sender.sendMessage(ChatColor.GREEN + args[0] + " successfully unbanned " + args[0] + "!");
+					sender.sendMessage(ChatColor.GREEN + sender.getName() + " successfully unbanned " + args[0] + "!");
 					CommandBin.plugin.getConfig().set(args[0] + ".banned", false);
 					CommandBin.plugin.getConfig().set(args[0] + ".banreason", null);
 					CommandBin.plugin.saveConfig();

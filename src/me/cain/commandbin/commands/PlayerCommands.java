@@ -77,6 +77,37 @@ public class PlayerCommands implements CommandExecutor
 			}
 		}
 		
+		if(l.equalsIgnoreCase("tp2p"))
+		{
+			if(args.length < 2)
+			{
+				sender.sendMessage("/" + l.toString() + " [player] to [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.teleport.tp2p"))
+				{
+					Player target1 = Bukkit.getServer().getPlayer(args[0]);
+					Player target2 = Bukkit.getServer().getPlayer(args[1]);
+					if(target1 != null && target2 != null)
+					{
+						target1.teleport(target2.getLocation());
+						sender.sendMessage(ChatColor.GREEN + "Teleported " + target1.getName() + " to " + target2.getName());
+						target1.sendMessage(ChatColor.GREEN + sender.getName() + " teleported you to " + target2.getName());
+						target2.sendMessage(ChatColor.GREEN + sender.getName() + " teleported " + target1.getName() + " to you!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
 		if(l.equalsIgnoreCase("setspawn"))
 		{
 			if(CommandBin.plugin.pCheck(sender, "CommandBin.teleport.setspawn"))

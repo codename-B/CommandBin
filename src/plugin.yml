@@ -11,6 +11,8 @@ commands:
        description: 'Set the worlds spawn location'
    spawn:
        description: 'Teleport to the worlds spawn'
+   tp2p:
+       description: 'Teleport a player to another player'
    tpall:
        description: 'Teleport everyone to you'
    tpworld:

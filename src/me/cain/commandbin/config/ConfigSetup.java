@@ -169,6 +169,13 @@ public class ConfigSetup
 			CommandBin.plugin.saveConfig();
 		}
 		
+		if(CommandBin.plugin.getConfig().get("settings.mineablemobspawners") == null)
+		{
+			CommandBin.plugin.getConfig().set("settings.mineablemobspawners", true);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default mineable mob spawners");
+			CommandBin.plugin.saveConfig();
+		}
+		
 		
 		
 		

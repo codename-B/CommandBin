@@ -14,6 +14,7 @@ public class CommandRegistration
 		CommandBin.plugin.getCommand("tp").setExecutor(TeleporterCommands);
 		CommandBin.plugin.getCommand("tphere").setExecutor(TeleporterCommands);
 		CommandBin.plugin.getCommand("tpall").setExecutor(TeleporterCommands);
+		CommandBin.plugin.getCommand("tp2p").setExecutor(TeleporterCommands);
 		CommandBin.plugin.getCommand("tpworld").setExecutor(TeleporterCommands);
 		CommandBin.plugin.getCommand("spawn").setExecutor(TeleporterCommands);
 		CommandBin.plugin.getCommand("setspawn").setExecutor(TeleporterCommands);
