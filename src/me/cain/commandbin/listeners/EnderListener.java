@@ -11,7 +11,7 @@ public class EnderListener extends EntityListener
 {
 	public void onEndermanPickup(EndermanPickupEvent e)
 	{
-		if(CommandBin.plugin.getConfig().get("settings.endermangriefing").equals(false))
+		if(CommandBin.plugin.getConfig().getBoolean("settings.endermangriefing", false))
 		{
 			e.setCancelled(true);
 		}
@@ -20,7 +20,7 @@ public class EnderListener extends EntityListener
 	
 	public void onEndermanPlace(EndermanPlaceEvent e)
 	{
-		if(CommandBin.plugin.getConfig().get("settings.endermangriefing").equals(false))
+		if(CommandBin.plugin.getConfig().getBoolean("settings.endermangriefing", false))
 		{
 			e.setCancelled(true);
 		}

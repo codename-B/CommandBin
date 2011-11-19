@@ -40,7 +40,6 @@ public class CommandBin extends JavaPlugin {
 	public void onDisable()
 	{
 		System.out.println(Plugin + "Disabled successfully.");
-		Statistics.EndStats();
 	}
 	
 	public boolean pCheck(Player player, String l)

@@ -108,6 +108,36 @@ public class PlayerCommands implements CommandExecutor
 			}
 		}
 		
+		if(l.equalsIgnoreCase("put"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.teleport.put"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						Location place = sender.getTargetBlock(null, 0).getLocation();
+						target.teleport(place);
+						sender.sendMessage(ChatColor.GREEN + "Teleported " + target.getName() + " to where you're looking at!");
+						target.sendMessage(ChatColor.GREEN + sender.getName() + " teleported you to where he/she was looking at!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
 		if(l.equalsIgnoreCase("setspawn"))
 		{
 			if(CommandBin.plugin.pCheck(sender, "CommandBin.teleport.setspawn"))

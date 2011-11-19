@@ -15,6 +15,7 @@ public class CommandRegistration
 		CommandBin.plugin.getCommand("tphere").setExecutor(TeleporterCommands);
 		CommandBin.plugin.getCommand("tpall").setExecutor(TeleporterCommands);
 		CommandBin.plugin.getCommand("tp2p").setExecutor(TeleporterCommands);
+		CommandBin.plugin.getCommand("put").setExecutor(TeleporterCommands);
 		CommandBin.plugin.getCommand("tpworld").setExecutor(TeleporterCommands);
 		CommandBin.plugin.getCommand("spawn").setExecutor(TeleporterCommands);
 		CommandBin.plugin.getCommand("setspawn").setExecutor(TeleporterCommands);
@@ -140,6 +141,7 @@ public class CommandRegistration
 		// Crossbow Commands
 		CommandExecutor cb = new CrossBowCommands();
 		CommandBin.plugin.getCommand("crossbow").setExecutor(cb);
+		//
 		
 	}
 }
