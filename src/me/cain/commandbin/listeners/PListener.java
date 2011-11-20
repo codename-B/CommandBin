@@ -2,6 +2,7 @@ package me.cain.commandbin.listeners;
 
 import me.cain.commandbin.CommandBin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -68,7 +69,18 @@ public class PListener extends PlayerListener {
 				e.getPlayer().sendMessage(ChatColor.RED + CommandBin.plugin.getConfig().getString("settings.playerismuted"));
 				e.setCancelled(true);
 			}
+			
+			if(CommandBin.plugin.getConfig().getBoolean("settings.customchat"))
+			{
+				String message = e.getMessage();
+	            String lol = message.replaceAll("(&([a-f0-9]))", "§$2");
+	            e.setCancelled(true);
+	            String test = CommandBin.permissionHandler.getUserPrefix(e.getPlayer().getWorld().getName(), e.getPlayer().getName());
+	            Bukkit.getServer().broadcastMessage("[" + test + "] " + e.getPlayer().getName() + ": " + lol);
+			}
+			return;
 	}
+		
 	
 	public void onPlayerInteract(PlayerInteractEvent e)
 	{
@@ -122,6 +134,16 @@ public class PListener extends PlayerListener {
 		{
 			e.getPlayer().sendMessage(str.replace("[p]", e.getPlayer().getName()));
 		}
+		
+
+		
+		if(CommandBin.plugin.getConfig().getBoolean("bannedips." + e.getPlayer().getAddress().getAddress().getHostAddress().toString().replace(".", "")))
+		{
+			e.getPlayer().kickPlayer("You have been IP banned from this server");
+			e.setJoinMessage("");
+			e.getPlayer().sendMessage("your ip is banned ;O");
+		}
+		
 		return;
 	}
 	

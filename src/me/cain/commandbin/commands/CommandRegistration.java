@@ -104,6 +104,8 @@ public class CommandRegistration
 		CommandBin.plugin.getCommand("unmute").setExecutor(ModCommands);
 		CommandBin.plugin.getCommand("who").setExecutor(ModCommands);
 		CommandBin.plugin.getCommand("paid").setExecutor(ModCommands);
+		CommandBin.plugin.getCommand("banip").setExecutor(ModCommands);
+		CommandBin.plugin.getCommand("unbanip").setExecutor(ModCommands);
 		//
 		
 		// Spawn Mob Commands

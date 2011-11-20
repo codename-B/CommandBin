@@ -190,6 +190,20 @@ public class ConfigSetup
 			CommandBin.plugin.saveConfig();
 		}
 		
+		if(CommandBin.plugin.getConfig().get("settings.customchat") == null)
+		{
+			CommandBin.plugin.getConfig().set("settings.customchat", true);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default custom chat");
+			CommandBin.plugin.saveConfig();
+		}
+		
+		if(CommandBin.plugin.getConfig().get("settings.bowexplosionradius") == null)
+		{
+			CommandBin.plugin.getConfig().set("settings.bowexplosionradius", 3);
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default bow explosion radius");
+			CommandBin.plugin.saveConfig();
+		}
+		
 		
 		
 		

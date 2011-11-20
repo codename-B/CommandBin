@@ -349,6 +349,60 @@ public class ModerationCommands implements CommandExecutor
 			}
 		}
 		
+		if(l.equalsIgnoreCase("banip"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [player]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.banip"))
+				{
+					Player target = Bukkit.getServer().getPlayer(args[0]);
+					if(target != null)
+					{
+						String ip2 = target.getAddress().getAddress().getHostAddress().toString();
+						String ipworking = ip2.replace(".", "");
+						
+						CommandBin.plugin.getConfig().set("bannedips." + ipworking, true);
+						CommandBin.plugin.saveConfig();
+						target.kickPlayer("Your IP address has been banned!");
+						sender.sendMessage(ChatColor.GREEN + "IP " + target.getAddress() + " has been banned!");
+					}
+					else
+					{
+						sender.sendMessage(CommandBin.plugin.PlayerOffline);
+					}
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("unbanip"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [ip]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.unbanip"))
+				{
+					CommandBin.plugin.getConfig().set("bannedips." + args[0], false);
+					sender.sendMessage(ChatColor.GREEN + "IP " + args[0] + " unbanned!");
+					CommandBin.plugin.saveConfig();
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
+		
 		return false;
 	}
 	

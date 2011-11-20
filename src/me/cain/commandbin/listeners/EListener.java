@@ -65,7 +65,8 @@ public class EListener extends EntityListener {
 			{
 				if(CommandBin.plugin.getConfig().getBoolean(((Player)((Arrow) e.getEntity()).getShooter()).getName() + ".explosionbow"))
 				{
-					e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), 5);
+					int radius = CommandBin.plugin.getConfig().getInt("settings.bowexplosionradius");
+					e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), radius);
 				}
 			}
 			
@@ -73,6 +74,8 @@ public class EListener extends EntityListener {
 			{
 				if(CommandBin.plugin.getConfig().getBoolean(((Player)((Arrow) e.getEntity()).getShooter()).getName() + ".crossbow"))
 				{
+					final int radius = CommandBin.plugin.getConfig().getInt("settings.bowexplosionradius");
+
 					e.getEntity().getLocation().getBlock().setType(Material.REDSTONE_TORCH_ON);
 					Bukkit.getScheduler().scheduleAsyncDelayedTask(CommandBin.plugin, new Runnable() 
 					{
@@ -98,7 +101,7 @@ public class EListener extends EntityListener {
 													{
 														public void run()
 														{
-															e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), 5);
+															e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), radius);
 														}
 													}, 
 													5L);
