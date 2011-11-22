@@ -71,7 +71,7 @@ public class PListener extends PlayerListener {
 				e.setCancelled(true);
 			}
 			
-			if(CommandBin.plugin.getConfig().getBoolean("settings.customchat"))
+			/*if(CommandBin.plugin.getConfig().getBoolean("settings.customchat"))
 			{
 				String message = e.getMessage();
 	            String lol = message.replaceAll("(&([a-f0-9]))", "§$2");
@@ -79,6 +79,8 @@ public class PListener extends PlayerListener {
 	            String test = CommandBin.permissionHandler.getUserPrefix(e.getPlayer().getWorld().getName(), e.getPlayer().getName());
 	            Bukkit.getServer().broadcastMessage("[" + test + "] " + e.getPlayer().getName() + ": " + lol);
 			}
+			*/
+			
 			return;
 	}
 		
