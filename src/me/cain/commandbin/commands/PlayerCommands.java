@@ -330,7 +330,6 @@ public class PlayerCommands implements CommandExecutor
 				{
 					sender.sendMessage(CommandBin.plugin.NoPermission);
 				}
-				sender.sendMessage("/" + l.toString() + " [player]");
 			}
 			else
 			{
