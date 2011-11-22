@@ -5,6 +5,7 @@ import me.cain.commandbin.CommandBin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -28,11 +29,7 @@ public class BListener extends BlockListener {
 			{
 				if(e.getBlock().getType() == Material.TNT)
 				{
-					if(CommandBin.plugin.pCheck(e.getPlayer(), "CommandBin.general.tntbypass"))
-					{
-						return;
-					}
-					else
+					if(!CommandBin.plugin.pCheck(e.getPlayer(), "CommandBin.general.tntbypass"))
 					{
 						e.setCancelled(true);
 						e.getPlayer().sendMessage(ChatColor.RED + "Your administrator has disabled the placement of TNT.");
@@ -47,11 +44,7 @@ public class BListener extends BlockListener {
 			{
 				if(e.getBlock().getType() == Material.LAVA || e.getBlock().getType() == Material.LAVA_BUCKET)
 				{
-					if(CommandBin.plugin.pCheck(e.getPlayer(), "CommandBin.general.lavabypass"))
-					{
-						return;
-					}
-					else
+					if(!CommandBin.plugin.pCheck(e.getPlayer(), "CommandBin.general.lavabypass"))
 					{
 						e.setCancelled(true);
 						e.getPlayer().sendMessage(ChatColor.RED + "Your administrator has disabled the placement of LAVA.");
@@ -67,13 +60,15 @@ public class BListener extends BlockListener {
 	public void onBlockBreak(BlockBreakEvent e)
 	{
 		
+		Block brokenblock = e.getBlock();
+		
 		if(CommandBin.plugin.getConfig().getBoolean("settings.mineablemobspawners"))
 		{
 			if(e.getPlayer().getItemInHand().getType() == Material.DIAMOND_PICKAXE)
 			{
-				if(e.getBlock().getType() == Material.MOB_SPAWNER)
+				if(brokenblock.getType() == Material.MOB_SPAWNER)
 				{
-					e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(Material.MOB_SPAWNER, 1));
+					e.getPlayer().getWorld().dropItemNaturally(brokenblock.getLocation(), new ItemStack(Material.MOB_SPAWNER, 1));
 				}
 			}
 		}
