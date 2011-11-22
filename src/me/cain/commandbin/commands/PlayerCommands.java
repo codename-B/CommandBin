@@ -769,7 +769,7 @@ public class PlayerCommands implements CommandExecutor
 						}
 						else
 						{
-							sender.sendMessage(ChatColor.RED + "That name is too long. It must be below 20 characters.");
+							sender.sendMessage(ChatColor.RED + "That name is too long. It must be below 20 characters. Sorry :(");
 						}
 					}
 					else
