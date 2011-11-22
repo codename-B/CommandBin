@@ -425,18 +425,22 @@ public class PlayerCommands implements CommandExecutor
 		
 		if(l.equalsIgnoreCase("explode"))
 		{
-			if(args.length < 1)
+			if(args.length < 2)
 			{
-				sender.sendMessage("/" + l.toString() + " [player]");
+				sender.sendMessage("/" + l.toString() + " [player] [radius]");
 			}
 			else
 			{
 				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.explode"))
 				{
+					
+					float radius = Integer.parseInt(args[0]);
+					
 					Player target = Bukkit.getServer().getPlayer(args[0]);
+					
 					if(target != null)
 					{
-						target.getWorld().createExplosion(target.getLocation(), 5);
+						target.getWorld().createExplosion(target.getLocation(), radius);
 						sender.sendMessage(ChatColor.GREEN + "You created a explosion at " + target.getName() + "'s location!");
 						target.sendMessage(ChatColor.GREEN + sender.getName() + " created a explosion at your location.");
 					}
