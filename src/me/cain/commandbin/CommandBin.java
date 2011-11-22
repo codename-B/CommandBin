@@ -21,6 +21,15 @@ public class CommandBin extends JavaPlugin {
 	public String NoPermission = ChatColor.GRAY + "You have no permission to use this command.";
 	public String PlayerOffline = ChatColor.RED + "This player is offline";
 	
+/*	This is a public source however sharing is not allowed.
+	This plugin will come from one link, and one link only:
+		http://bit.ly/commandbin
+	If you see any other link distributing this plugin,
+	report it to me immediately.
+	
+	Thank you for using my plugin,
+	- Cain Donghey (CainFoool)*/
+	
 	public void onEnable()
 	{
 		plugin = this;
