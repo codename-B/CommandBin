@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -131,7 +132,7 @@ public class PlayerCommands implements CommandExecutor
 					Player target = Bukkit.getServer().getPlayer(args[0]);
 					if(target != null)
 					{
-						Location place = sender.getTargetBlock(null, 0).getLocation();
+						Location place = sender.getTargetBlock(null, 0).getRelative(BlockFace.UP, 2).getLocation();
 						target.teleport(place);
 						sender.sendMessage(ChatColor.GREEN + "Teleported " + target.getName() + " to where you're looking at!");
 						target.sendMessage(ChatColor.GREEN + sender.getName() + " teleported you to where he/she was looking at!");
