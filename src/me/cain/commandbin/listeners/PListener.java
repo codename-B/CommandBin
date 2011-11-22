@@ -8,6 +8,7 @@ import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.CreatureType;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -103,7 +104,21 @@ public class PListener extends PlayerListener {
 						e.getPlayer().getWorld().strikeLightning(block);
 					}
 				}
+		}
+		
+		if(e.getAction() == Action.LEFT_CLICK_BLOCK)
+		{
+			if(CommandBin.plugin.getConfig().getBoolean("settings.spawn-enderdragon-on-hitting-enderegg"))
+			{
+				if(e.getClickedBlock().getType() == Material.DRAGON_EGG)
+				{
+					Location dragon = e.getClickedBlock().getLocation();
+					e.getPlayer().getWorld().spawnCreature(dragon, CreatureType.ENDER_DRAGON);
+					e.getPlayer().sendMessage(ChatColor.RED + "You have made the Ender Dragon arise from hell!");
+					e.getClickedBlock().setType(Material.AIR);
+				}
 			}
+		}
 		return;
 	}
 	

@@ -3,6 +3,8 @@ package me.cain.commandbin.commands;
 import me.cain.commandbin.CommandBin;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,9 +31,10 @@ public class MobCommands implements CommandExecutor
 					if(CreatureType.valueOf(args[0].toUpperCase()) != null)
 					{
 							int mob = Integer.parseInt(args[1]);
+							Location block = sender.getTargetBlock(null, 0).getRelative(BlockFace.UP, 2).getLocation();
 							for(int i = 0; i < mob; i++)
 							{
-								sender.getWorld().spawnCreature(sender.getTargetBlock(null, 0).getLocation(), CreatureType.valueOf(args[0].toUpperCase()));
+								sender.getWorld().spawnCreature(block, CreatureType.valueOf(args[0].toUpperCase()));
 							}
 							sender.sendMessage(ChatColor.GREEN + "Spawned a " + args[0]);
 					}

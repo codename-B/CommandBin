@@ -9,6 +9,8 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EnderDragon;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
@@ -24,7 +26,14 @@ public class PlayerCommands implements CommandExecutor
 		{
 			if(args.length < 1)
 			{
-				sender.sendMessage("/" + l.toString() + " [player]");
+				if(s instanceof Player)
+				{
+					sender.sendMessage("/" + l.toString() + " [player]");
+				}
+				else
+				{
+					s.sendMessage("/" + l.toString() + " [player]");
+				}
 			}
 			else
 			{
@@ -64,6 +73,7 @@ public class PlayerCommands implements CommandExecutor
 						target.teleport(sender.getLocation());
 						sender.sendMessage(ChatColor.GREEN + "Teleported " + target.getName() + " to you!");
 						target.sendMessage(sender.getName() + " teleported you!");
+						for (Entity entity : sender.getWorld().getLivingEntities()) { if (entity instanceof EnderDragon) { entity.remove(); entity.getWorld().createExplosion(entity.getLocation(), 5); } }
 					}
 					else
 					{
@@ -1040,11 +1050,10 @@ public class PlayerCommands implements CommandExecutor
 						sender.sendMessage(CommandBin.plugin.NoPermission);
 					}
 				}
-				
-				
 			}
 		}
 		return false;
 	}
+	
 
 }

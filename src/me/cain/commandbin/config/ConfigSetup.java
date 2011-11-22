@@ -204,6 +204,13 @@ public class ConfigSetup
 			CommandBin.plugin.saveConfig();
 		}
 		
+		if(CommandBin.plugin.getConfig().get("settings.spawn-enderdragon-on-hitting-enderegg") == null)
+		{
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting default Enderegg");
+			CommandBin.plugin.getConfig().set("settings.spawn-enderdragon-on-hitting-enderegg", true);
+			CommandBin.plugin.saveConfig();
+		}
+		
 		
 		
 		
