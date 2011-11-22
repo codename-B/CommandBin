@@ -108,6 +108,8 @@ public class HelpCommands implements CommandExecutor
 						sender.sendMessage("/crossbow - The crossbow");
 						sender.sendMessage("/tp2p - Teleport one player to another");
 						sender.sendMessage("/put - Put a player in the location your looking at");
+						sender.sendMessage("/banip - Ban a player's IP address");
+						sender.sendMessage("/unbanip - Unban a player's IP address");
 					}
 				}
 				else
