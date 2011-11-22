@@ -22,7 +22,7 @@ public class MobCommands implements CommandExecutor
 			if(args.length < 2)
 			{
 				sender.sendMessage("/" + l.toString() + " [mobname] [amount]");
-				sender.sendMessage("Mobs: chicken, cow, pig, sheep, squid, enderman, pigman, wolf, cavespider, creeper, ghast, silverfish, skeleton, slime, spider, zombie, enderdragon");
+				sender.sendMessage("Mobs: chicken, cow, pig, sheep, squid, enderman, pigman, wolf, cavespider, creeper, ghast, silverfish, skeleton, slime, spider, zombie, enderdragon, villager");
 			}
 			else
 			{
