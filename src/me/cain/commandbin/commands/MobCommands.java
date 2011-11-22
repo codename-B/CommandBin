@@ -28,17 +28,19 @@ public class MobCommands implements CommandExecutor
 			{
 				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.mob"))
 				{
-					if(CreatureType.valueOf(args[0].toUpperCase()) != null)
+					try
 					{
-							int mob = Integer.parseInt(args[1]);
-							Location block = sender.getTargetBlock(null, 0).getRelative(BlockFace.UP, 2).getLocation();
-							for(int i = 0; i < mob; i++)
-							{
-								sender.getWorld().spawnCreature(block, CreatureType.valueOf(args[0].toUpperCase()));
-							}
-							sender.sendMessage(ChatColor.GREEN + "Spawned a " + args[0]);
-					}
-					else
+						if(CreatureType.valueOf(args[0].toUpperCase()) != null)
+						{
+								int mob = Integer.parseInt(args[1]);
+								Location block = sender.getTargetBlock(null, 0).getRelative(BlockFace.UP, 2).getLocation();
+								for(int i = 0; i < mob; i++)
+								{
+									sender.getWorld().spawnCreature(block, CreatureType.valueOf(args[0].toUpperCase()));
+								}
+								sender.sendMessage(ChatColor.GREEN + "Spawned " + args[1] + args[0] + "(s)");
+						}
+					} catch (IllegalArgumentException e)
 					{
 						sender.sendMessage(ChatColor.RED + "This creature does not exist. (" + args[0] + ")");
 					}
