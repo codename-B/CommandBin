@@ -28,7 +28,7 @@ public class CommandBin extends JavaPlugin {
 	report it to me immediately.
 	
 	Thank you for using my plugin,
-	- Cain Donghey (CainFoool)*/
+	- Cain Donaghey (CainFoool)*/
 	
 	public void onEnable()
 	{
