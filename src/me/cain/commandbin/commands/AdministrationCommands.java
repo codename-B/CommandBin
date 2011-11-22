@@ -16,13 +16,15 @@ public class AdministrationCommands implements CommandExecutor
 	{
 		Player sender = (Player) s;
 		
-		if(l.equalsIgnoreCase("commandbin"))
+		if(l.equalsIgnoreCase("cmdbin"))
 		{
 			if(args.length < 1)
 			{
 				sender.sendMessage(ChatColor.YELLOW + "+++++++++CommandBin++++++++++");
 				sender.sendMessage(ChatColor.GREEN + "+ Over 60 commands in CommandBin!");
 				sender.sendMessage(ChatColor.RED + "+ Version: " + CommandBin.plugin.getDescription().getVersion());
+				sender.sendMessage(ChatColor.LIGHT_PURPLE + "+ Developer: " + CommandBin.plugin.getDescription().getAuthors());
+				sender.sendMessage(ChatColor.YELLOW + "+++++++++++++++++++++++++++++");
 			}
 			else
 			{
@@ -52,8 +54,9 @@ public class AdministrationCommands implements CommandExecutor
 					if(CommandBin.plugin.pCheck(sender, "CommandBin.admin.debug"))
 					{
 						Runtime rt = Runtime.getRuntime();
-						sender.sendMessage(ChatColor.GREEN + "Max Memory: " + Math.floor(rt.maxMemory() / 1024.0 / 1024.0) + " MB");
-						sender.sendMessage(ChatColor.GREEN + "Free Memory: " + Math.floor(rt.freeMemory() / 1024.0 / 1024.0) + " MB");
+						double max = Math.floor(rt.maxMemory() / 1024.0 / 1024.0);
+						double free = Math.floor(rt.freeMemory() / 1024.0 / 1024.0);
+						sender.sendMessage(ChatColor.RED + "" + free + " / " + max + " memory available"); // Don't ask about the ""
 					}
 					else
 					{

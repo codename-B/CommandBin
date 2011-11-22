@@ -30,7 +30,7 @@ public class CommandRegistration
 		// Administration Commands
 		CommandExecutor AdminCommands = new AdministrationCommands();
 		CommandBin.plugin.getCommand("shutdown").setExecutor(AdminCommands);
-		CommandBin.plugin.getCommand("commandbin").setExecutor(AdminCommands);
+		CommandBin.plugin.getCommand("cmdbin").setExecutor(AdminCommands);
 		//
 		
 		// Fake Join/Leave Commands

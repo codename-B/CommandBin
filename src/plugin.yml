@@ -23,7 +23,7 @@ commands:
        description: 'Shut down the server'
    unloadworld:
        description: 'Unload a world'
-   commandbin:
+   cmdbin:
        description: 'General stuff'
    join:
        description: 'Fake Join Message'
