@@ -80,7 +80,6 @@ public class PListener extends PlayerListener {
 	            Bukkit.getServer().broadcastMessage("[" + test + "] " + e.getPlayer().getName() + ": " + lol);
 			}
 			*/
-			
 			return;
 	}
 		

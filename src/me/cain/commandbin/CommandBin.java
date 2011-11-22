@@ -28,7 +28,25 @@ public class CommandBin extends JavaPlugin {
 	report it to me immediately.
 	
 	Thank you for using my plugin,
-	- Cain Donaghey (CainFoool)*/
+	- Cain Donaghey (CainFoool)
+	
+	CommandBin is a project created by CainFoool which provides
+	Essentials Commands for Bukkit Servers. Copyright 2011-2012.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    
+    */
 	
 	public void onEnable()
 	{
