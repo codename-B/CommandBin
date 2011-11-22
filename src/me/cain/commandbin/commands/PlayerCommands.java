@@ -458,18 +458,21 @@ public class PlayerCommands implements CommandExecutor
 		
 		if(l.equalsIgnoreCase("light"))
 		{
-			if(args.length < 1)
+			if(args.length < 2)
 			{
-				sender.sendMessage("/" + l.toString() + " [player]");
+				sender.sendMessage("/" + l.toString() + " [player] [length in seconds]");
 			}
 			else
 			{
 				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.light"))
 				{
 					Player target = Bukkit.getServer().getPlayer(args[0]);
+					
+					int i = Integer.parseInt(args[0]) * 10; // Always remember to multiply by 10, milliseconds ftw.
+					
 					if(target != null)
 					{
-						target.setFireTicks(100);
+						target.setFireTicks(i);
 					}
 					else
 					{
