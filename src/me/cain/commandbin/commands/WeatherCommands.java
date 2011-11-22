@@ -2,6 +2,7 @@ package me.cain.commandbin.commands;
 
 import me.cain.commandbin.CommandBin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,7 +21,7 @@ public class WeatherCommands implements CommandExecutor
 			if(CommandBin.plugin.pCheck(sender, "CommandBin.general.weather"))
 			{
 				sender.getWorld().setStorm(false);
-				sender.sendMessage(ChatColor.GREEN + "It is now sunny!");
+				Bukkit.getServer().broadcastMessage(ChatColor.YELLOW + sender.getName() + " has made the sun shine!");
 			}
 			else
 			{
@@ -34,7 +35,7 @@ public class WeatherCommands implements CommandExecutor
 			{
 				sender.getWorld().setStorm(true);
 				sender.getWorld().setThundering(true);
-				sender.sendMessage(ChatColor.GREEN + "It is now raining!");
+				Bukkit.getServer().broadcastMessage(ChatColor.GRAY + sender.getName() + " made it begin to rain!");
 			}
 			else
 			{
