@@ -598,10 +598,11 @@ public class PlayerCommands implements CommandExecutor
 		
 		if(l.equalsIgnoreCase("slap"))
 		{
-			if(args.length < 1)
+			if(args.length < 2)
 			{
-				sender.sendMessage("/" + l.toString() + " [player]");
+				sender.sendMessage("/" + l.toString() + " [player] [hardness]");
 			}
+			
 			else
 			{
 				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.slap"))
@@ -609,7 +610,9 @@ public class PlayerCommands implements CommandExecutor
 					Player target = Bukkit.getServer().getPlayer(args[0]);
 					if(target != null)
 					{
-						target.setVelocity(new Vector(0.3, 0.4, 0));
+						double i = Integer.parseInt(args[0]) * 0.4;
+						
+						target.setVelocity(new Vector(i, i, 0));
 						target.sendMessage(ChatColor.GREEN + sender.getName() + " slapped you!");
 						sender.sendMessage(ChatColor.GREEN + "You slapped " + sender.getName());
 					}
@@ -662,7 +665,7 @@ public class PlayerCommands implements CommandExecutor
 			}
 		}
 		
-		if (l.equalsIgnoreCase("i"))
+		if (l.equalsIgnoreCase("i")) // Incredibly messy, must get a decent /i working. 
 		{
 			if(args.length < 1)
 			{
