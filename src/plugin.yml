@@ -141,3 +141,5 @@ commands:
        description: 'Ban a players IP address'
    unbanip:
        description: 'Unban a players IP'
+   me:
+       description: 'Simple me'

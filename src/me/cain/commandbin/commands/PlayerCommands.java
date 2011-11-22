@@ -1062,6 +1062,34 @@ public class PlayerCommands implements CommandExecutor
 				}
 			}
 		}
+		
+		if(l.equalsIgnoreCase("me"))
+		{
+			if(args.length < 1)
+			{
+				sender.sendMessage("/" + l.toString() + " [message]");
+			}
+			else
+			{
+				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.me"))
+				{
+					StringBuilder x = new StringBuilder();
+					
+					int i;
+					
+					for(i = 0; i < args.length; i++)
+					{
+						x.append(args[i]).append(" ");
+					}
+					
+					Bukkit.getServer().broadcastMessage(ChatColor.RED + sender.getName() + " : " + x.toString().trim());
+				}
+				else
+				{
+					sender.sendMessage(CommandBin.plugin.NoPermission);
+				}
+			}
+		}
 		return false;
 	}
 	

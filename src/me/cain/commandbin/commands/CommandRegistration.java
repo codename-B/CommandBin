@@ -83,6 +83,7 @@ public class CommandRegistration
 		CommandBin.plugin.getCommand("delunlimited").setExecutor(PlayerCommands);
 		CommandBin.plugin.getCommand("mytime").setExecutor(PlayerCommands);
 		CommandBin.plugin.getCommand("armour").setExecutor(PlayerCommands);
+		CommandBin.plugin.getCommand("me").setExecutor(PlayerCommands);
 		//
 		
 		// Snowman Commands
