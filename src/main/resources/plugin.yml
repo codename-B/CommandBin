@@ -21,11 +21,13 @@ commands:
        description: 'Teleport everyone to you'
    tpworld:
        description: 'Teleport to a world'
+       # Done - perms: trashcan.admin.createworld
    createworld:
        description: 'Create a world'
        # Done (implemented myself) - perms: trashcan.admin.shutdown
    shutdown:
        description: 'Shut down the server'
+       # Done - perms: trashcan.admin.unloadworld
    unloadworld:
        description: 'Unload a world'
        # Done (renamed from cmdbin to trashcan) - perms for /trashcan reload: trashcan.admin.reload

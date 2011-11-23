@@ -11,9 +11,11 @@ import org.bukkit.command.CommandSender;
 // TrashCan Imports
 import me.iffa.trashcan.TrashCan;
 import me.iffa.trashcan.commands.admin.AboutCommand;
+import me.iffa.trashcan.commands.admin.CreateworldCommand;
 import me.iffa.trashcan.commands.admin.DebugCommand;
 import me.iffa.trashcan.commands.admin.PaidCommand;
 import me.iffa.trashcan.commands.admin.ShutdownCommand;
+import me.iffa.trashcan.commands.admin.UnloadworldCommand;
 import me.iffa.trashcan.commands.admin.WhoCommand;
 import me.iffa.trashcan.commands.fun.CrossbowCommand;
 import me.iffa.trashcan.commands.fun.ExplosionBowCommand;
@@ -75,6 +77,8 @@ public abstract class TrashCommand {
         commands.put("paid", new PaidCommand("paid"));
         commands.put("who", new WhoCommand("who"));
         commands.put("shutdown", new ShutdownCommand("shutdown"));
+        commands.put("createworld", new CreateworldCommand("createworld"));
+        commands.put("unloadworld", new UnloadworldCommand("unloadworld"));
         
         // General commands
         commands.put("motd", new MOTDCommand("motd"));
