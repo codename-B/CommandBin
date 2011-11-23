@@ -79,6 +79,7 @@ public class TrashCan extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("CommandBin") != null) {
             LoggerUtil.log(Level.WARNING, "TrashCan does not want CommandBin running on the server. Disabling.");
             panicDisabled = true;
+            setEnabled(false);
             return;
         }
         // Continuing normal enabling process.
