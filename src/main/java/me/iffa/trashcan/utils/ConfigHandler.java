@@ -489,6 +489,21 @@ public class ConfigHandler {
             LoggerUtil.log(Level.WARNING, "Problem while toggling player specific setting: " + ex.toString());
         }
     }
+    
+    /**
+     * Sets the handicapped-state for a player.
+     * 
+     * @param enabled Enabled true/false
+     * @param player Player to set
+     */
+    public void setHandicapped(boolean enabled, Player player) {
+        config.get(ConfigFile.CONFIG).set(player.getName() + ".handicapped", enabled);
+        try {
+            config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
+        } catch (IOException ex) {
+            LoggerUtil.log(Level.WARNING, "Problem while toggling player specific setting: " + ex.toString());
+        }
+    }
 
     /**
      * Sets the unlimited drops enabled-state for a player.

@@ -23,6 +23,7 @@ commands:
        description: 'Teleport to a world'
    createworld:
        description: 'Create a world'
+       # Done (implemented myself) - perms: trashcan.admin.shutdown
    shutdown:
        description: 'Shut down the server'
    unloadworld:
@@ -83,10 +84,9 @@ commands:
        description: 'Set somebody on fire'
    roll:
        description: 'Roll a number'
+       # Done, unhandicap is now in this command - perms: trashcan.moderating.handicap
    handicap:
        description: 'Disable a player from using commands'
-   unhandicap:
-       description: 'Reenable a player to use commands'
        # Done, /unmute is now in this command - perms: trashcan.moderating.mute
    mute:
        description: 'Mute a player'
