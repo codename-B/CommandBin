@@ -16,12 +16,14 @@ import me.iffa.trashcan.commands.admin.DebugCommand;
 import me.iffa.trashcan.commands.admin.PaidCommand;
 import me.iffa.trashcan.commands.admin.ShutdownCommand;
 import me.iffa.trashcan.commands.admin.UnloadworldCommand;
+import me.iffa.trashcan.commands.admin.WeatherCommand;
 import me.iffa.trashcan.commands.admin.WhoCommand;
 import me.iffa.trashcan.commands.fun.CrossbowCommand;
 import me.iffa.trashcan.commands.fun.ExplosionBowCommand;
 import me.iffa.trashcan.commands.fun.FacepalmCommand;
 import me.iffa.trashcan.commands.fun.JoinCommand;
 import me.iffa.trashcan.commands.fun.LeaveCommand;
+import me.iffa.trashcan.commands.fun.SnowmanCommand;
 import me.iffa.trashcan.commands.fun.TorchbowCommand;
 import me.iffa.trashcan.commands.general.CreativeCommand;
 import me.iffa.trashcan.commands.general.MOTDCommand;
@@ -79,6 +81,7 @@ public abstract class TrashCommand {
         commands.put("shutdown", new ShutdownCommand("shutdown"));
         commands.put("createworld", new CreateworldCommand("createworld"));
         commands.put("unloadworld", new UnloadworldCommand("unloadworld"));
+        commands.put("weather", new WeatherCommand("weather"));
         
         // General commands
         commands.put("motd", new MOTDCommand("motd"));
@@ -94,6 +97,7 @@ public abstract class TrashCommand {
         commands.put("join", new JoinCommand("join"));
         commands.put("leave", new LeaveCommand("leave"));
         commands.put("facepalm", new FacepalmCommand("facepalm"));
+        commands.put("snowman", new SnowmanCommand("snowman"));
         
         // Moderating commands
         commands.put("kick", new KickCommand("kick"));

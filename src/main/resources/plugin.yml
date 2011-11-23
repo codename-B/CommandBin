@@ -51,10 +51,9 @@ commands:
        description: 'Strike a player'
    time:
        description: 'Set the time of the world'
-   rain:
-       description: 'Make it rain'
-   sun:
-       description: 'Make the sunny'
+       # Done (sun + rain) - perms: trashcan.admin.weather
+   weather:
+       description: 'Change weather'
        # Done - perms: trashcan.moderation.kick
    kick:
        description: 'Kick a player'
@@ -76,10 +75,9 @@ commands:
        # Done - perms: trashcan.fun.facepalm
    facepalm:
        description: 'Facepalm'
+       # Done (unsnowman is now in this command) - perms: trashcan.fun.snowman
    snowman:
        description: 'Create snow'
-   unsnowman:
-       description: 'Stop the creation of snow!'
    explode:
        description: 'Explode someone'
    light:
@@ -140,10 +138,10 @@ commands:
        description: 'Torch Bow'
    mytime:
        description: 'Set your time'
-   armour:
-       description: 'Give yourself armour'
+   armor:
+       description: 'Give yourself armor'
        # Needs to be implemented, thinking of a way
-   cbhelp:
+   tchelp:
        description: 'TrashCan commands'
        # Done - perms: trashcan.fun.explosionbow
    explosionbow:
