@@ -13,6 +13,7 @@ import me.iffa.trashcan.TrashCan;
 import me.iffa.trashcan.commands.admin.AboutCommand;
 import me.iffa.trashcan.commands.admin.DebugCommand;
 import me.iffa.trashcan.commands.admin.PaidCommand;
+import me.iffa.trashcan.commands.admin.WhoCommand;
 import me.iffa.trashcan.commands.fun.CrossbowCommand;
 import me.iffa.trashcan.commands.fun.ExplosionBowCommand;
 import me.iffa.trashcan.commands.fun.FacepalmCommand;
@@ -27,6 +28,7 @@ import me.iffa.trashcan.commands.general.SurvivalCommand;
 import me.iffa.trashcan.commands.moderator.BanCommand;
 import me.iffa.trashcan.commands.moderator.KickCommand;
 import me.iffa.trashcan.commands.moderator.MuteCommand;
+import me.iffa.trashcan.commands.moderator.UnbanCommand;
 
 /**
  * Represents a command of TrashCan.
@@ -66,6 +68,7 @@ public abstract class TrashCommand {
         commands.put("debug", new DebugCommand("debug"));
         commands.put("trashcan", new AboutCommand("trashcan"));
         commands.put("paid", new PaidCommand("paid"));
+        commands.put("who", new WhoCommand("who"));
         
         // General commands
         commands.put("motd", new MOTDCommand("motd"));
@@ -86,6 +89,7 @@ public abstract class TrashCommand {
         commands.put("kick", new KickCommand("kick"));
         commands.put("ban", new BanCommand("ban"));
         commands.put("mute", new MuteCommand("mute"));
+        commands.put("unban", new UnbanCommand("unban"));
         
         // Need to investigate the mysterious .getCommands() a bit more.
         // TODO: Set TrashCommandExecutor as executor for all commands nicely.
