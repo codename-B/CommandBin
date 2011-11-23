@@ -318,6 +318,9 @@ public class ConfigHandler {
     public boolean getBanned(Player player) {
         return config.get(ConfigFile.CONFIG).getBoolean(player.getName() + ".banned", false);
     }
+    public boolean getBanned(String player) {
+        return config.get(ConfigFile.CONFIG).getBoolean(player + ".banned", false);
+    }
 
     public boolean getSnowman(Player player) {
         return config.get(ConfigFile.CONFIG).getBoolean(player.getName() + ".snowman", false);
@@ -347,7 +350,7 @@ public class ConfigHandler {
         return config.get(ConfigFile.CONFIG).getString(player.getName() + ".nickname", null);
     }
 
-    public boolean isIpBanned(Player player) {
+    public boolean getIPBanned(Player player) {
         String ipStrip = player.getAddress().getAddress().getHostAddress().replace(".", "");
         if (config.get(ConfigFile.CONFIG).getBoolean("bannedips." + ipStrip, false)) {
             return true;
@@ -371,9 +374,33 @@ public class ConfigHandler {
         }
     }
     
+    /**
+     * Sets the banned-state for a player.
+     * 
+     * @param banned Enabled true/false
+     * @param player Player
+     * @param reason Reason
+     */
     public void setBanned(boolean banned, Player player, String reason) {
         config.get(ConfigFile.CONFIG).set(player.getName() + ".banned", banned);
         config.get(ConfigFile.CONFIG).set(player.getName() + ".banreason", reason);
+        try {
+            config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
+        } catch (IOException ex) {
+            LoggerUtil.log(Level.WARNING, "Problem while toggling player specific setting: " + ex.toString());
+        }
+    }
+    
+    /**
+     * Sets the banned-state for a player.
+     * 
+     * @param banned Enabled true/false
+     * @param player Player
+     * @param reason Reason
+     */
+    public void setBanned(boolean banned, String player, String reason) {
+        config.get(ConfigFile.CONFIG).set(player + ".banned", banned);
+        config.get(ConfigFile.CONFIG).set(player + ".banreason", reason);
         try {
             config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
         } catch (IOException ex) {
@@ -419,6 +446,21 @@ public class ConfigHandler {
      */
     public void setUnlimited(boolean enabled, Player player) {
         config.get(ConfigFile.CONFIG).set(player.getName() + ".unlimited", enabled);
+        try {
+            config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
+        } catch (IOException ex) {
+            LoggerUtil.log(Level.WARNING, "Problem while toggling player specific setting: " + ex.toString());
+        }
+    }
+    
+    /**
+     * Sets the muted-state for a player.
+     * 
+     * @param enabled Enabled true/false
+     * @param player Player to set
+     */
+    public void setMuted(boolean enabled, Player player) {
+        config.get(ConfigFile.CONFIG).set(player.getName() + ".muted", enabled);
         try {
             config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
         } catch (IOException ex) {

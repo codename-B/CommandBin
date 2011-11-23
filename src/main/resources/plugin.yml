@@ -88,10 +88,9 @@ commands:
        description: 'Disable a player from using commands'
    unhandicap:
        description: 'Reenable a player to use commands'
+       # Done, /unmute is now in this command - perms: trashcan.moderating.mute
    mute:
        description: 'Mute a player'
-   unmute:
-       description: 'Unmute a Player'
    smoke:
        description: 'Become the walking chimney'
    explosionstick:
@@ -102,6 +101,7 @@ commands:
        description: 'Slap a player'
    clear:
        description: 'Clear your inventory'
+       # Done - perms: trashcan.admin.who, trashcan.admin.who.others
    who:
        description: 'Details of a player'
        # Done - perms: trashcan.general.spawnmob

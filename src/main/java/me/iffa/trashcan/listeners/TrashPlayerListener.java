@@ -129,7 +129,7 @@ public class TrashPlayerListener extends PlayerListener {
     @Override
     public void onPlayerLogin(PlayerLoginEvent e) {
         // Moved IP ban check to PlayerLogin, since normal ban is here too.
-        if (TrashCan.getConfigHandler().isIpBanned(e.getPlayer())) {
+        if (TrashCan.getConfigHandler().getIPBanned(e.getPlayer())) {
             e.disallow(Result.KICK_BANNED, "You are IP banned.");
             return;
         }

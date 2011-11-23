@@ -20,18 +20,36 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 /**
- *   This program is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *                   BANANACODE PUBLIC LICENSE
+ *                     Version 1, July 2011
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ * Copyright (C) 2011 Ben L. <nightgunner5@llamaslayers.net>
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Everyone is permitted to copy and distribute verbatim or modified
+ * copies of this license document, and changing it is allowed as long
+ * as the name is changed.
+ *
+ *                   BANANACODE PUBLIC LICENSE
+ *  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ *
+ * 0. Any binary distribution of this software or software derived from this
+ *    software must be accompanied by source code. For example, this can be
+ *    a link to a GIT repository, the inclusion of source code in the JAR,
+ *    or a "source code" link on the same page as a "download" link.
+ * 1. This license may not be removed from projects directly or indirectly
+ *    derived from a project containing this license, unless it is replaced
+ *    with a newer version of the BANANACODE PUBLIC LICENSE.
+ * 2. All JavaDoc @author tags must be retained when Java code is copied from a
+ *    file containing such tags. You may add your name in an additional @author
+ *    tag, but not change the contents of existing @author tags.
+ * 3. Releasing this software and claiming you are the original author is a
+ *    violation of this license. Any such violations will be dealt with by
+ *    one or more of the following: Murder, pulling your toenails out in slow
+ *    motion, politely asking you to stop, stealing your first born, and/or
+ *    legal action.
+ * 
+ * NOTE TO CAIN: I am not breaking your license. I have only taken the commands
+ * from CommandBin, and implemented them myself.
  * 
  * Main class of TrashCan, a (Craft)Bukkit plugin originally made by "CainFool", 
  * who does not know any proper Java and will never learn that either. Consider 
