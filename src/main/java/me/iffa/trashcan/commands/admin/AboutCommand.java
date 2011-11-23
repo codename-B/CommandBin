@@ -34,6 +34,7 @@ public class AboutCommand extends TrashCommand {
         if (args.length < 1) {
             MessageUtil.sendMessage(cs, ChatColor.GOLD + " TrashCan - " + TrashCan.getDescriptionFile().getVersion());
             MessageUtil.sendMessage(cs, ChatColor.GRAY + "   - Fixing " + ChatColor.GOLD + "CommandBin" + ChatColor.GRAY + " since 11.22.2011!");
+            MessageUtil.sendMessage(cs, ChatColor.GRAY + "   - There are currently " + ChatColor.GOLD + TrashCommand.getCommands().size() + ChatColor.GRAY + " commands!");
             return true;
         } else {
             // Credits

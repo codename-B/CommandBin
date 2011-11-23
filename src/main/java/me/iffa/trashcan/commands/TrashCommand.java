@@ -19,8 +19,11 @@ import me.iffa.trashcan.commands.fun.FacepalmCommand;
 import me.iffa.trashcan.commands.fun.JoinCommand;
 import me.iffa.trashcan.commands.fun.LeaveCommand;
 import me.iffa.trashcan.commands.fun.TorchbowCommand;
+import me.iffa.trashcan.commands.general.CreativeCommand;
 import me.iffa.trashcan.commands.general.MOTDCommand;
 import me.iffa.trashcan.commands.general.MeCommand;
+import me.iffa.trashcan.commands.general.SpawnmobCommand;
+import me.iffa.trashcan.commands.general.SurvivalCommand;
 import me.iffa.trashcan.commands.moderator.BanCommand;
 import me.iffa.trashcan.commands.moderator.KickCommand;
 
@@ -66,6 +69,9 @@ public abstract class TrashCommand {
         // General commands
         commands.put("motd", new MOTDCommand("motd"));
         commands.put("me", new MeCommand("me"));
+        commands.put("creative", new CreativeCommand("creative"));
+        commands.put("survival", new SurvivalCommand("survival"));
+        commands.put("spawnmob", new SpawnmobCommand("spawnmob"));
         
         // Fun commands
         commands.put("crossbow", new CrossbowCommand("crossbow"));

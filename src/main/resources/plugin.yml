@@ -36,8 +36,10 @@ commands:
        # done - perms: trashcan.fun.fakeleave
    leave:
        description: 'Fake leave message'
+       # Done - perms: trashcan.general.creative, trashcan.general.creative.others
    creative:
        description: 'Switch to creative-gamemode'
+       # Done - perms: trashcan.general.survival, trashcan.general.survival.others
    survival:
        description: 'Switch to survival-gamemode'
    shoot:

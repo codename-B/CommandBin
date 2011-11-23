@@ -1,6 +1,9 @@
 // Package Declaration
 package me.iffa.trashcan.utils;
 
+// TrashCan Imports
+import me.iffa.trashcan.TrashCan;
+
 // Bukkit Imports
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -25,7 +28,7 @@ public class MessageUtil {
             cs.sendMessage(message);
             return;
         }
-        cs.sendMessage(ChatColor.stripColor(message));
+        cs.sendMessage(TrashCan.getPrefix() + " " + ChatColor.stripColor(message));
     }
     
     /**
