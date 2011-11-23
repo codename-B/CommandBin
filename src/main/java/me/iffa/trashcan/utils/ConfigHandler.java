@@ -103,18 +103,22 @@ public class ConfigHandler {
      * don't expect this to work 10 times out of 10!
      * 
      * @param configFile Configuration file to reload
+     * 
+     * @return True if reload was successful, false if something went wrong
      */
-    public void reload(ConfigFile configFile) {
+    public boolean reload(ConfigFile configFile) {
         InputStream defConfigStream = plugin.getResource(configFile.getFileName());
         if (defConfigStream != null) {
             try {
                 config.get(configFile).load(defConfigStream);
+                return true;
             } catch (IOException ex) {
                 LoggerUtil.log(Level.WARNING, "Problem reloading configuration file: '" + ex.toString());
             } catch (InvalidConfigurationException ex) {
                 LoggerUtil.log(Level.WARNING, "Problem reloading configuration file: '" + ex.toString());
             }
         }
+        return false;
     }
 
     /**
@@ -328,7 +332,7 @@ public class ConfigHandler {
     }
 
     public String getBanReason(Player player) {
-        return config.get(ConfigFile.CONFIG).getString(player.getName() + ".banreason", "Not specified");
+        return config.get(ConfigFile.CONFIG).getString(player.getName() + ".banreason", "Unspecified");
     }
 
     public boolean getExplosionStick(Player player) {
@@ -360,6 +364,16 @@ public class ConfigHandler {
      */
     public void setExplosionBow(boolean enabled, Player player) {
         config.get(ConfigFile.CONFIG).set(player.getName() + ".explosionbow", enabled);
+        try {
+            config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
+        } catch (IOException ex) {
+            LoggerUtil.log(Level.WARNING, "Problem while toggling player specific setting: " + ex.toString());
+        }
+    }
+    
+    public void setBanned(boolean banned, Player player, String reason) {
+        config.get(ConfigFile.CONFIG).set(player.getName() + ".banned", banned);
+        config.get(ConfigFile.CONFIG).set(player.getName() + ".banreason", reason);
         try {
             config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
         } catch (IOException ex) {

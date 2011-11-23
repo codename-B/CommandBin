@@ -12,11 +12,17 @@ import org.bukkit.command.CommandSender;
 import me.iffa.trashcan.TrashCan;
 import me.iffa.trashcan.commands.admin.AboutCommand;
 import me.iffa.trashcan.commands.admin.DebugCommand;
+import me.iffa.trashcan.commands.admin.PaidCommand;
 import me.iffa.trashcan.commands.fun.CrossbowCommand;
 import me.iffa.trashcan.commands.fun.ExplosionBowCommand;
+import me.iffa.trashcan.commands.fun.FacepalmCommand;
 import me.iffa.trashcan.commands.fun.JoinCommand;
 import me.iffa.trashcan.commands.fun.LeaveCommand;
 import me.iffa.trashcan.commands.fun.TorchbowCommand;
+import me.iffa.trashcan.commands.general.MOTDCommand;
+import me.iffa.trashcan.commands.general.MeCommand;
+import me.iffa.trashcan.commands.moderator.BanCommand;
+import me.iffa.trashcan.commands.moderator.KickCommand;
 
 /**
  * Represents a command of TrashCan.
@@ -55,6 +61,11 @@ public abstract class TrashCommand {
         // Administration commands
         commands.put("debug", new DebugCommand("debug"));
         commands.put("trashcan", new AboutCommand("trashcan"));
+        commands.put("paid", new PaidCommand("paid"));
+        
+        // General commands
+        commands.put("motd", new MOTDCommand("motd"));
+        commands.put("me", new MeCommand("me"));
         
         // Fun commands
         commands.put("crossbow", new CrossbowCommand("crossbow"));
@@ -62,6 +73,11 @@ public abstract class TrashCommand {
         commands.put("torchbow", new TorchbowCommand("torchbow"));
         commands.put("join", new JoinCommand("join"));
         commands.put("leave", new LeaveCommand("leave"));
+        commands.put("facepalm", new FacepalmCommand("facepalm"));
+        
+        // Moderating commands
+        commands.put("kick", new KickCommand("kick"));
+        commands.put("ban", new BanCommand("ban"));
         
         // Need to investigate the mysterious .getCommands() a bit more.
         // TODO: Set TrashCommandExecutor as executor for all commands nicely.

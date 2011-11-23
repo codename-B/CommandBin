@@ -41,7 +41,7 @@ settings:
   # True if ops can see all PMs sent
   opscanseepms: true
   # Message of the day. Sent to players that join, and when using /motd.
-  message-of-the-day: &7This is the default &6TrashCan&7 MOTD!
+  message-of-the-day: '&7This is the default &6TrashCan&7 MOTD!/break  - We can even make this multiple lines.'
   # True if custom chat formatting should be used.
   customchat: true
   # Bow explosion radius (if the player has explosionbow enabled)

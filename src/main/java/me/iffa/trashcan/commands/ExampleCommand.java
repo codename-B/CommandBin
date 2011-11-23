@@ -20,12 +20,7 @@ public class ExampleCommand extends TrashCommand {
     }
 
     /**
-     * @see me.iffa.trashcan.commands.TrashCommand
-     * 
-     * @param cs Command sender
-     * @param args Command arguments
-     * 
-     * @return True if no usage information should be sent
+     * {@inheritDoc}
      */
     @Override
     public boolean executeCommand(CommandSender cs, String[] args) {
@@ -33,9 +28,7 @@ public class ExampleCommand extends TrashCommand {
     }
 
     /**
-     * @see me.iffa.trashcan.commands.TrashCommand
-     * 
-     * @param cs Command sender
+     * {@inheritDoc}
      */
     @Override
     public void sendUsage(CommandSender cs) {

@@ -23,69 +23,6 @@ public class ModerationCommands implements CommandExecutor
 	{
 		Player sender = (Player) s;
 		
-		if(l.equalsIgnoreCase("kick"))
-		{
-			if(args.length < 2)
-			{
-				sender.sendMessage("/" + l.toString() + " [player]");
-			}
-			else
-			{
-
-				Player target = Bukkit.getServer().getPlayer(args[0]);
-				if(TrashCan.plugin.pCheck(sender, "CommandBin.general.kick"))
-				{
-					if(target != null)
-					{
-						target.kickPlayer(args[1].toString());
-						if(TrashCan.plugin.getConfig().get("settings.broadcastkick").equals(true))
-						{
-							Bukkit.getServer().broadcastMessage(ChatColor.RED + sender.getName() + " has kicked " + target.getName());
-						}
-					}
-					else
-					{
-						sender.sendMessage(TrashCan.plugin.PlayerOffline);
-					}
-				}
-				else
-				{
-					sender.sendMessage(TrashCan.plugin.NoPermission);
-				}
-			}
-		}
-		
-		if(l.equalsIgnoreCase("ban"))
-		{
-			if(args.length < 2)
-			{
-				sender.sendMessage("/" + l.toString() + " [player] [reason]");
-			}
-			else
-			{
-				if(TrashCan.plugin.pCheck(sender, "CommandBin.general.ban"))
-				{
-					Player target = Bukkit.getServer().getPlayer(args[0]);
-					if(target != null)
-					{
-						sender.sendMessage("You banned " + target.getName());
-						target.kickPlayer(args[1]);
-						TrashCan.plugin.getConfig().set(target.getName() + ".banned", true);
-						TrashCan.plugin.getConfig().set(target.getName() + ".banreason", args[1]);
-						TrashCan.plugin.saveConfig();
-					}
-					else
-					{
-						sender.sendMessage(TrashCan.plugin.PlayerOffline);
-					}
-				}
-				else
-				{
-					sender.sendMessage(TrashCan.plugin.NoPermission);
-				}
-			}
-		}
-		
 		if(l.equalsIgnoreCase("unban"))
 		{
 			if(args.length < 1)
@@ -329,26 +266,6 @@ public class ModerationCommands implements CommandExecutor
 			}
 		}
 		
-		if(l.equalsIgnoreCase("paid"))
-		{
-			if(args.length < 1)
-			{
-				sender.sendMessage("/" + l.toString() + " [player]");
-			}
-			else
-			{
-				if(TrashCan.plugin.pCheck(sender, "CommandBin.general.paid"))
-				{
-					sender.sendMessage(ChatColor.GREEN + args[0] + " has paid: ");
-					hasPaid(sender, args[0].toString());
-				}
-				else
-				{
-					sender.sendMessage(TrashCan.plugin.NoPermission);
-				}
-			}
-		}
-		
 		if(l.equalsIgnoreCase("banip"))
 		{
 			if(args.length < 1)
@@ -405,21 +322,4 @@ public class ModerationCommands implements CommandExecutor
 		
 		return false;
 	}
-	
-	public void hasPaid(Player p, String user)
-	{
-		try {
-		    URL url = new URL("http://minecraft.net/haspaid.jsp?user=" + user);
-
-		    BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-		    String str;
-		    while ((str = in.readLine()) != null) {
-		      p.sendMessage(str);
-		    }
-		    in.close();
-		} catch (MalformedURLException e) {
-		} catch (IOException e) {
-		}
-	}
-
 }

@@ -22,7 +22,6 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 
 /**
  * Player listener for features like freezing, smoking, snowman, ban & kick etc.
@@ -80,7 +79,8 @@ public class TrashPlayerListener extends PlayerListener {
             e.getPlayer().sendMessage(TrashCan.getConfigHandler().getMutedMessage());
             e.setCancelled(true);
         }
-        // Removed commented customchat-implementation. Waiting for official.
+        // Removed commented customchat-implementation. Waiting for Cain's 
+        // implementation.
     }
 
     /**
@@ -128,9 +128,13 @@ public class TrashPlayerListener extends PlayerListener {
      */
     @Override
     public void onPlayerLogin(PlayerLoginEvent e) {
+        // Moved IP ban check to PlayerLogin, since normal ban is here too.
+        if (TrashCan.getConfigHandler().isIpBanned(e.getPlayer())) {
+            e.disallow(Result.KICK_BANNED, "You are IP banned.");
+            return;
+        }
         if (TrashCan.getConfigHandler().getBanned(e.getPlayer())) {
-            e.setKickMessage(TrashCan.getConfigHandler().getBanReason(e.getPlayer()));
-            e.disallow(Result.KICK_BANNED, "You were banned for: " + TrashCan.getConfigHandler().getBanReason(e.getPlayer()));
+            e.disallow(Result.KICK_BANNED, "You are banned: " + TrashCan.getConfigHandler().getBanReason(e.getPlayer()));
         }
     }
 
@@ -141,21 +145,18 @@ public class TrashPlayerListener extends PlayerListener {
      */
     @Override
     public void onPlayerJoin(PlayerJoinEvent e) {
-            e.setJoinMessage(TrashCan.getConfigHandler().getJoinMessage());
+        e.setJoinMessage(TrashCan.getConfigHandler().getJoinMessage());
 
         if (TrashCan.getConfigHandler().getNick(e.getPlayer()) != null) {
             e.getPlayer().setDisplayName(TrashCan.getConfigHandler().getNick(e.getPlayer()));
         }
-
+        
+        // Sending MOTD to player.
         String motd = TrashCan.getConfigHandler().getMOTD();
         for (String str : motd.split("/break")) {
             e.getPlayer().sendMessage(str.replace("[p]", e.getPlayer().getName()));
         }
-        if (TrashCan.getConfigHandler().isIpBanned(e.getPlayer())) {
-            e.getPlayer().kickPlayer("You have been IP banned from this server.");
-            e.setJoinMessage("");
-            e.getPlayer().sendMessage("You have been IP banned from this server.");
-        }
+        
     }
 
     /**
@@ -165,7 +166,7 @@ public class TrashPlayerListener extends PlayerListener {
      */
     @Override
     public void onPlayerQuit(PlayerQuitEvent e) {
-            e.setQuitMessage(TrashCan.getConfigHandler().getLeaveMessage());
+        e.setQuitMessage(TrashCan.getConfigHandler().getLeaveMessage());
     }
 
     /**

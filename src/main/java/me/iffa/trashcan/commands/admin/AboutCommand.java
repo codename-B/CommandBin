@@ -4,6 +4,7 @@ package me.iffa.trashcan.commands.admin;
 // TrashCan Imports
 import me.iffa.trashcan.TrashCan;
 import me.iffa.trashcan.commands.TrashCommand;
+import me.iffa.trashcan.utils.ConfigHandler.ConfigFile;
 import me.iffa.trashcan.utils.MessageUtil;
 
 // Bukkit Imports
@@ -31,15 +32,27 @@ public class AboutCommand extends TrashCommand {
     @Override
     public boolean executeCommand(CommandSender cs, String[] args) {
         if (args.length < 1) {
-            MessageUtil.sendMessage(cs, ChatColor.DARK_GREEN + " TrashCan - " + TrashCan.getDescriptionFile().getVersion());
-            MessageUtil.sendMessage(cs, ChatColor.DARK_GREEN + "   - Fixing " + ChatColor.GREEN + "CommandBin" + ChatColor.DARK_GREEN + " since 11.22.2011!");
+            MessageUtil.sendMessage(cs, ChatColor.GOLD + " TrashCan - " + TrashCan.getDescriptionFile().getVersion());
+            MessageUtil.sendMessage(cs, ChatColor.GRAY + "   - Fixing " + ChatColor.GOLD + "CommandBin" + ChatColor.GRAY + " since 11.22.2011!");
             return true;
         } else {
             // Credits
             if (args[0].equalsIgnoreCase("credits")) {
-                MessageUtil.sendMessage(cs, ChatColor.DARK_GREEN + " TrashCan Credits:");
-                MessageUtil.sendMessage(cs, ChatColor.GRAY + "  - iffa - creator of TrashCan");
-                MessageUtil.sendMessage(cs, ChatColor.GRAY + "  - CainFoool - creator of CommandBin");
+                MessageUtil.sendMessage(cs, ChatColor.GOLD + " TrashCan Credits:");
+                MessageUtil.sendMessage(cs, ChatColor.GRAY + "   - iffa - creator of TrashCan");
+                MessageUtil.sendMessage(cs, ChatColor.GRAY + "   - CainFoool - creator of CommandBin");
+                return true;
+            } else if (args[0].equalsIgnoreCase("reload")) {
+                if (!cs.hasPermission("trashcan.admin.reload")) {
+                    MessageUtil.sendMessage(cs, ChatColor.RED + "You don't have permission!");
+                    return true;
+                }
+                if (TrashCan.getConfigHandler().reload(ConfigFile.CONFIG)) {
+                    MessageUtil.sendMessage(cs, ChatColor.GREEN + "TrashCan has been reloaded.");
+                } else {
+                    MessageUtil.sendMessage(cs, ChatColor.RED + "Something went wrong while reloading TrashCan!");
+                }
+                return true;
             }
         }
         return false;
@@ -50,6 +63,7 @@ public class AboutCommand extends TrashCommand {
      */
     @Override
     public void sendUsage(CommandSender cs) {
+        MessageUtil.sendMessage(cs, ChatColor.GRAY + "Usage: /trashcan [credits/reload]");
     }
     
 }

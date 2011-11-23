@@ -27,13 +27,13 @@ commands:
        description: 'Shut down the server'
    unloadworld:
        description: 'Unload a world'
-       # Done
+       # Done (renamed from cmdbin to trashcan) - perms for /trashcan reload: trashcan.admin.reload
    trashcan:
        description: 'Information about TrashCan and other useful stuff'
-       # Done
+       # Done - perms: trashcan.fun.fakejoin
    join:
        description: 'Fake join message'
-       # done
+       # done - perms: trashcan.fun.fakeleave
    leave:
        description: 'Fake leave message'
    creative:
@@ -50,10 +50,13 @@ commands:
        description: 'Make it rain'
    sun:
        description: 'Make the sunny'
+       # Done - perms: trashcan.moderation.kick
    kick:
        description: 'Kick a player'
+       # Done - perms: trashcan.moderation.ban
    ban:
        description: 'Ban a player'
+       # Needs to be done!
    unban:
        description: 'Unban a player'
    heal:
@@ -66,6 +69,7 @@ commands:
        description: 'Unfreeze a player'
    god:
        description: 'Set yourself to god enabled or disabled'
+       # Done - perms: trashcan.fun.facepalm
    facepalm:
        description: 'Facepalm'
    snowman:
@@ -98,6 +102,7 @@ commands:
        description: 'Clear your inventory'
    who:
        description: 'Details of a player'
+       # Done - perms: trashcan.general.spawnmob
    spawnmob:
        description: 'Spawn a mob'
    i:
@@ -127,7 +132,7 @@ commands:
        description: 'Unlimited amount of blocks'
    delunlimited:
        description: 'Remove unlimited blocks'
-       # Done
+       # Done - perms: trashcan.fun.torchbow
    torchbow:
        description: 'Torch Bow'
    mytime:
@@ -136,22 +141,27 @@ commands:
        description: 'Give yourself armour'
    cbhelp:
        description: 'CommandBin Commands'
-       # Done
+       # Done - perms: trashcan.fun.explosionbow
    explosionbow:
        description: 'The dangerous explosion bow'
-       # Done
+       # Done - perms: trashcan.fun.crossbow
    crossbow:
-       description: 'Ohdear.'
+       description: 'Shoot explosives like explosionbow, without the redstone torches!'
+       # Done - perms: trashcan.admin.paid
    paid:
-       description: 'Check to see if a user paid legit'
+       description: 'Check to see if a user has paid for Minecraft.'
    put:
        description: 'Put a player where you are looking'
    banip:
        description: 'Ban a players IP address'
    unbanip:
        description: 'Unban a players IP'
+       # Done - perms: trashcan.general.me
    me:
-       description: '* player did something'
+       description: '* player did something.'
+       # Done (not in CommandBin) - perms: trashcan.general.motd
+   motd:
+       description: 'Get the server message of the day.'
 # Permissions
 permissions: []
   
