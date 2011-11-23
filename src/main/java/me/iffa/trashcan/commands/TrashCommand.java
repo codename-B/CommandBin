@@ -26,9 +26,12 @@ import me.iffa.trashcan.commands.general.MeCommand;
 import me.iffa.trashcan.commands.general.SpawnmobCommand;
 import me.iffa.trashcan.commands.general.SurvivalCommand;
 import me.iffa.trashcan.commands.moderator.BanCommand;
+import me.iffa.trashcan.commands.moderator.BanIPCommand;
+import me.iffa.trashcan.commands.moderator.FreezeCommand;
 import me.iffa.trashcan.commands.moderator.KickCommand;
 import me.iffa.trashcan.commands.moderator.MuteCommand;
 import me.iffa.trashcan.commands.moderator.UnbanCommand;
+import me.iffa.trashcan.commands.moderator.UnbanIPCommand;
 
 /**
  * Represents a command of TrashCan.
@@ -90,6 +93,9 @@ public abstract class TrashCommand {
         commands.put("ban", new BanCommand("ban"));
         commands.put("mute", new MuteCommand("mute"));
         commands.put("unban", new UnbanCommand("unban"));
+        commands.put("unbanip", new UnbanIPCommand("unbanip"));
+        commands.put("freeze", new FreezeCommand("freeze"));
+        commands.put("banip", new BanIPCommand("banip"));
         
         // Need to investigate the mysterious .getCommands() a bit more.
         // TODO: Set TrashCommandExecutor as executor for all commands nicely.

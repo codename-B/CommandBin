@@ -13,17 +13,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Represents /ban.
+ * Represents /banip.
  * 
  * @author iffamies
  */
-public class BanCommand extends TrashCommand {
+public class BanIPCommand extends TrashCommand {
     /**
-     * Constructor of BanCommand.
+     * Constructor of BanIPCommand.
      * 
      * @param label Command label
      */
-    public BanCommand(String label) {
+    public BanIPCommand(String label) {
         super(label);
     }
 
@@ -32,7 +32,7 @@ public class BanCommand extends TrashCommand {
      */
     @Override
     public boolean executeCommand(CommandSender cs, String[] args) {
-        if (!cs.hasPermission("trashcan.moderation.ban")) {
+        if (!cs.hasPermission("trashcan.moderation.banip")) {
             MessageUtil.sendMessage(cs, ChatColor.RED + "You don't have permission!");
             return true;
         }
@@ -46,11 +46,11 @@ public class BanCommand extends TrashCommand {
                 return true;
             } 
             Player target = Bukkit.getPlayer(args[0]);
-            TrashCan.getConfigHandler().setBanned(true, target, "Unspecified");
-            target.kickPlayer("You've been banned.");
-            MessageUtil.sendMessage(cs, ChatColor.GREEN + "The player '" + target.getName() + "' has been banned.");
+            TrashCan.getConfigHandler().setIPBanned(true, target, "Unspecified");
+            target.kickPlayer("You've been IP banned.");
+            MessageUtil.sendMessage(cs, ChatColor.GREEN + "The player '" + target.getName() + "' has been IP banned.");
             if (TrashCan.getConfigHandler().getBroadcastBan()) {
-                Bukkit.broadcastMessage(ChatColor.RED + "'" + target.getName() + "' has been banned. Reason: Unspecified");
+                Bukkit.broadcastMessage(ChatColor.RED + "'" + target.getName() + "' has been IP banned. Reason: Unspecified");
             }
             return true;
         } else {
@@ -64,10 +64,10 @@ public class BanCommand extends TrashCommand {
                 reason = reason + " " + args[arg];
             }
             TrashCan.getConfigHandler().setBanned(true, target, reason);
-            target.kickPlayer("You've been banned:" + reason);
-            MessageUtil.sendMessage(cs, ChatColor.GREEN + "The player '" + target.getName() + "' has been banned.");
+            target.kickPlayer("You've been IP banned:" + reason);
+            MessageUtil.sendMessage(cs, ChatColor.GREEN + "The player '" + target.getName() + "' has been IP banned.");
             if (TrashCan.getConfigHandler().getBroadcastBan()) {
-                Bukkit.broadcastMessage(ChatColor.RED + "'" + target.getName() + "' has been banned. Reason:" + reason);
+                Bukkit.broadcastMessage(ChatColor.RED + "'" + target.getName() + "' has been IP banned. Reason:" + reason);
             }
             return true;
         }
@@ -78,7 +78,7 @@ public class BanCommand extends TrashCommand {
      */
     @Override
     public void sendUsage(CommandSender cs) {
-        MessageUtil.sendMessage(cs, ChatColor.GRAY + "Usage: /ban <player> [reason]");
+        MessageUtil.sendMessage(cs, ChatColor.GRAY + "Usage: /banip <player> [reason]");
     }
     
 }

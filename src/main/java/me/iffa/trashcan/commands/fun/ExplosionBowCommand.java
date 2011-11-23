@@ -17,6 +17,7 @@ import org.bukkit.entity.Player;
  * @author iffamies
  */
 public class ExplosionBowCommand extends TrashCommand {
+
     /**
      * Constructor of ExplosionBowCommand.
      * 
@@ -36,8 +37,13 @@ public class ExplosionBowCommand extends TrashCommand {
                 MessageUtil.sendMessage(cs, TrashCan.getPrefix() + " Sorry, only players can use this command.");
                 return true;
             }
-            TrashCan.getConfigHandler().setExplosionBow(!TrashCan.getConfigHandler().getExplosionBow((Player)cs), (Player)cs);
-            MessageUtil.sendMessage(cs, ChatColor.GOLD + "Toggled explosionbow!");
+            TrashCan.getConfigHandler().setExplosionBow(!TrashCan.getConfigHandler().getExplosionBow((Player) cs), (Player) cs);
+            if (TrashCan.getConfigHandler().getExplosionBow((Player)cs)) {
+                MessageUtil.sendMessage(cs, ChatColor.GREEN + "Explosionbow has been enabled for you!");
+            } else {
+                MessageUtil.sendMessage(cs, ChatColor.GREEN + "Explosionbow has been disabled for you!");
+            }
+            return true;
         } else {
             MessageUtil.sendMessage(cs, ChatColor.RED + "You don't have permission!");
         }
@@ -50,5 +56,4 @@ public class ExplosionBowCommand extends TrashCommand {
     @Override
     public void sendUsage(CommandSender cs) {
     }
-    
 }

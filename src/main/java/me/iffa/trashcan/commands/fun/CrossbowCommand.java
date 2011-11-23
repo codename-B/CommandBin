@@ -37,7 +37,12 @@ public class CrossbowCommand extends TrashCommand {
                 return true;
             }
             TrashCan.getConfigHandler().setCrossbow(!TrashCan.getConfigHandler().getCrossbow((Player)cs), (Player)cs);
-            MessageUtil.sendMessage(cs, ChatColor.GOLD + "Toggled crossbow!");
+            if (TrashCan.getConfigHandler().getCrossbow((Player)cs)) {
+                MessageUtil.sendMessage(cs, ChatColor.GREEN + "Crossbow has been enabled for you!");
+            } else {
+                MessageUtil.sendMessage(cs, ChatColor.GREEN + "Crossbow has been disabled for you!");
+            }
+            return true;
         } else {
             MessageUtil.sendMessage(cs, ChatColor.RED + "You don't have permission!");
         }

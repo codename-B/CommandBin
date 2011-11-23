@@ -37,7 +37,12 @@ public class TorchbowCommand extends TrashCommand {
                 return true;
             }
             TrashCan.getConfigHandler().setTorchbow(!TrashCan.getConfigHandler().getTorchbow((Player)cs), (Player)cs);
-            MessageUtil.sendMessage(cs, ChatColor.GOLD + "Toggled torchbow!");
+            if (TrashCan.getConfigHandler().getTorchbow((Player)cs)) {
+                MessageUtil.sendMessage(cs, ChatColor.GREEN + "Torchbow has been enabled for you!");
+            } else {
+                MessageUtil.sendMessage(cs, ChatColor.GREEN + "Torchbow has been disabled for you!");
+            }
+            return true;
         } else {
             MessageUtil.sendMessage(cs, ChatColor.RED + "You don't have permission!");
         }

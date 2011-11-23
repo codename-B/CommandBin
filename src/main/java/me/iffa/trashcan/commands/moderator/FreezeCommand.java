@@ -7,45 +7,48 @@ import me.iffa.trashcan.commands.TrashCommand;
 import me.iffa.trashcan.utils.MessageUtil;
 
 // Bukkit Imports
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
- * Represents /unban.
+ * Represents /freeze.
  * 
  * @author iffamies
  */
-public class UnbanCommand extends TrashCommand {
+public class FreezeCommand extends TrashCommand {
     /**
-     * Constructor of UnbanCommand.
+     * Constructor of FreezeCommand.
      * 
      * @param label Command label
      */
-    public UnbanCommand(String label) {
+    public FreezeCommand(String label) {
         super(label);
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean executeCommand(CommandSender cs, String[] args) {
-        if (!cs.hasPermission("trashcan.moderation.unban")) {
+        if (!cs.hasPermission("trashcan.moderation.freeze")) {
             MessageUtil.sendMessage(cs, ChatColor.RED + "You don't have permission!");
             return true;
         }
         if (args.length < 1) {
             return false;
         }
-        
-        if (args.length >= 1) {
-            if (!TrashCan.getConfigHandler().getBanned(args[0])) {
-                MessageUtil.sendMessage(cs, ChatColor.RED + "The player '" + args[0] + "' is not banned!");
-                return true;
-            }
-            TrashCan.getConfigHandler().setBanned(false, args[0], null);
-            MessageUtil.sendMessage(cs, ChatColor.GREEN + "Unbanned '" + args[0] + "'.");
+        Player target = Bukkit.getPlayer(args[0]);
+        if (target == null) {
+            MessageUtil.sendMessage(cs, ChatColor.RED + "The player was not found!");
             return true;
+        }
+        TrashCan.getConfigHandler().setFrozen(!TrashCan.getConfigHandler().getFrozen(target), target);
+        if (TrashCan.getConfigHandler().getFrozen(target)) {
+            MessageUtil.sendMessage(target, ChatColor.RED + "You have been frozen!");
+        } else {
+            MessageUtil.sendMessage(target, ChatColor.GREEN + "You have been unfrozen!");
         }
         return true;
     }
@@ -55,7 +58,7 @@ public class UnbanCommand extends TrashCommand {
      */
     @Override
     public void sendUsage(CommandSender cs) {
-        MessageUtil.sendMessage(cs, ChatColor.GRAY + "Usage: /unban <player>");
+        MessageUtil.sendMessage(cs, ChatColor.GRAY + "Usage: /freeze <player>");
     }
     
 }

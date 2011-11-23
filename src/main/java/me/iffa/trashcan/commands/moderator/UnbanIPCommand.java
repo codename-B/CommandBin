@@ -11,17 +11,17 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 /**
- * Represents /unban.
+ * Represents /unbanip.
  * 
  * @author iffamies
  */
-public class UnbanCommand extends TrashCommand {
+public class UnbanIPCommand extends TrashCommand {
     /**
-     * Constructor of UnbanCommand.
+     * Constructor of UnbanIPCommand.
      * 
      * @param label Command label
      */
-    public UnbanCommand(String label) {
+    public UnbanIPCommand(String label) {
         super(label);
     }
 
@@ -30,7 +30,7 @@ public class UnbanCommand extends TrashCommand {
      */
     @Override
     public boolean executeCommand(CommandSender cs, String[] args) {
-        if (!cs.hasPermission("trashcan.moderation.unban")) {
+        if (!cs.hasPermission("trashcan.moderation.unbanip")) {
             MessageUtil.sendMessage(cs, ChatColor.RED + "You don't have permission!");
             return true;
         }
@@ -39,11 +39,11 @@ public class UnbanCommand extends TrashCommand {
         }
         
         if (args.length >= 1) {
-            if (!TrashCan.getConfigHandler().getBanned(args[0])) {
-                MessageUtil.sendMessage(cs, ChatColor.RED + "The player '" + args[0] + "' is not banned!");
+            if (!TrashCan.getConfigHandler().getIPBanned(args[0])) {
+                MessageUtil.sendMessage(cs, ChatColor.RED + "The address '" + args[0] + "' is not banned!");
                 return true;
             }
-            TrashCan.getConfigHandler().setBanned(false, args[0], null);
+            TrashCan.getConfigHandler().setIPBanned(false, args[0], null);
             MessageUtil.sendMessage(cs, ChatColor.GREEN + "Unbanned '" + args[0] + "'.");
             return true;
         }
@@ -55,7 +55,7 @@ public class UnbanCommand extends TrashCommand {
      */
     @Override
     public void sendUsage(CommandSender cs) {
-        MessageUtil.sendMessage(cs, ChatColor.GRAY + "Usage: /unban <player>");
+        MessageUtil.sendMessage(cs, ChatColor.GRAY + "Usage: /unbanip <ip>");
     }
     
 }

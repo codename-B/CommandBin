@@ -58,17 +58,16 @@ commands:
        # Done - perms: trashcan.moderation.ban
    ban:
        description: 'Ban a player'
-       # Needs to be done!
+       # Done - perms: trashcan.moderation.unban
    unban:
        description: 'Unban a player'
    heal:
        description: 'Heal a player'
    feed:
        description: 'Feed a player'
+       # Done, unfreeze is now in this command - perms: trashcan.moderation.freeze
    freeze:
        description: 'Freeze a player'
-   unfreeze:
-       description: 'Unfreeze a player'
    god:
        description: 'Set yourself to god enabled or disabled'
        # Done - perms: trashcan.fun.facepalm
@@ -141,8 +140,9 @@ commands:
        description: 'Set your time'
    armour:
        description: 'Give yourself armour'
+       # Needs to be implemented, thinking of a way
    cbhelp:
-       description: 'CommandBin Commands'
+       description: 'TrashCan commands'
        # Done - perms: trashcan.fun.explosionbow
    explosionbow:
        description: 'The dangerous explosion bow'
@@ -154,8 +154,10 @@ commands:
        description: 'Check to see if a user has paid for Minecraft.'
    put:
        description: 'Put a player where you are looking'
+       # Done - perms: trashcan.moderating.banip
    banip:
        description: 'Ban a players IP address'
+       # Done - perms: trashcan.moderating.unbanip
    unbanip:
        description: 'Unban a players IP'
        # Done - perms: trashcan.general.me
