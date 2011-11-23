@@ -13,6 +13,7 @@ import me.iffa.trashcan.TrashCan;
 import me.iffa.trashcan.commands.admin.AboutCommand;
 import me.iffa.trashcan.commands.admin.DebugCommand;
 import me.iffa.trashcan.commands.admin.PaidCommand;
+import me.iffa.trashcan.commands.admin.ShutdownCommand;
 import me.iffa.trashcan.commands.admin.WhoCommand;
 import me.iffa.trashcan.commands.fun.CrossbowCommand;
 import me.iffa.trashcan.commands.fun.ExplosionBowCommand;
@@ -28,6 +29,7 @@ import me.iffa.trashcan.commands.general.SurvivalCommand;
 import me.iffa.trashcan.commands.moderator.BanCommand;
 import me.iffa.trashcan.commands.moderator.BanIPCommand;
 import me.iffa.trashcan.commands.moderator.FreezeCommand;
+import me.iffa.trashcan.commands.moderator.HandicapCommand;
 import me.iffa.trashcan.commands.moderator.KickCommand;
 import me.iffa.trashcan.commands.moderator.MuteCommand;
 import me.iffa.trashcan.commands.moderator.UnbanCommand;
@@ -72,6 +74,7 @@ public abstract class TrashCommand {
         commands.put("trashcan", new AboutCommand("trashcan"));
         commands.put("paid", new PaidCommand("paid"));
         commands.put("who", new WhoCommand("who"));
+        commands.put("shutdown", new ShutdownCommand("shutdown"));
         
         // General commands
         commands.put("motd", new MOTDCommand("motd"));
@@ -96,6 +99,7 @@ public abstract class TrashCommand {
         commands.put("unbanip", new UnbanIPCommand("unbanip"));
         commands.put("freeze", new FreezeCommand("freeze"));
         commands.put("banip", new BanIPCommand("banip"));
+        commands.put("handicap", new HandicapCommand("handicap"));
         
         // Need to investigate the mysterious .getCommands() a bit more.
         // TODO: Set TrashCommandExecutor as executor for all commands nicely.
