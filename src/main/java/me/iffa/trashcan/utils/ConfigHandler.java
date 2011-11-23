@@ -15,6 +15,9 @@ import java.util.logging.Level;
 import me.iffa.trashcan.TrashCan;
 
 // Bukkit Imports
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -360,6 +363,22 @@ public class ConfigHandler {
         String ipStrip = address.replace(".", "");
         return config.get(ConfigFile.CONFIG).getBoolean("bannedips." + ipStrip, false);
     }
+    
+    public Location getHome(String home, Player player) {
+        if (!config.get(ConfigFile.CONFIG).contains(player.getName() + ".home." + home)) {
+            return null;
+        }
+        double x = config.get(ConfigFile.CONFIG).getDouble(player.getName() + ".home." + home + ".x");
+        double y = config.get(ConfigFile.CONFIG).getDouble(player.getName() + ".home." + home + ".y");
+        double z = config.get(ConfigFile.CONFIG).getDouble(player.getName() + ".home." + home + ".z");
+        String w = config.get(ConfigFile.CONFIG).getString(player.getName() + ".home." + home + ".world");
+        World world = Bukkit.getWorld(w);
+        return new Location(world, x, y, z);
+    }
+    
+    public boolean hasHomes(Player player) {
+        return config.get(ConfigFile.CONFIG).getConfigurationSection(player.getName() + ".home") == null ? false : true;
+    }
 
     /* Setter methods */
     /**
@@ -547,6 +566,40 @@ public class ConfigHandler {
             config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
         } catch (IOException ex) {
             LoggerUtil.log(Level.WARNING, "Problem while toggling player specific setting: " + ex.toString());
+        }
+    }
+    
+    /**
+     * Sets a new home for a player.
+     * 
+     * @param player Player
+     * @param location Home location
+     * @param home Home name
+     */
+    public void setHome(Player player, Location location, String home) {
+        config.get(ConfigFile.CONFIG).set(player.getName() + ".home." + home + ".x", location.getX());
+        config.get(ConfigFile.CONFIG).set(player.getName() + ".home." + home + ".y", location.getY());
+        config.get(ConfigFile.CONFIG).set(player.getName() + ".home." + home + ".z", location.getZ());
+        config.get(ConfigFile.CONFIG).set(player.getName() + ".home." + home + ".world", location.getWorld().getName());
+        try {
+            config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
+        } catch (IOException ex) {
+            LoggerUtil.log(Level.WARNING, "Problem while setting player specific setting: " + ex.toString());
+        }
+    }
+    
+    /**
+     * Sets a player's nickname.
+     * 
+     * @param player Player
+     * @param nick Nickname
+     */
+    public void setNick(Player player, String nick) {
+        config.get(ConfigFile.CONFIG).set(player.getName() + ".nickname", nick);
+        try {
+            config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
+        } catch (IOException ex) {
+            LoggerUtil.log(Level.WARNING, "Problem while setting player specific setting: " + ex.toString());
         }
     }
 }

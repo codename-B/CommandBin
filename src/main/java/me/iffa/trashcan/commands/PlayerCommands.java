@@ -523,31 +523,6 @@ public class PlayerCommands implements CommandExecutor {
             }
         }
 
-        if (l.equalsIgnoreCase("nick")) {
-            if (args.length < 2) {
-                sender.sendMessage("/" + l.toString() + " [player] [nickname]");
-            } else {
-                if (TrashCan.plugin.pCheck(sender, "CommandBin.general.nick")) {
-                    Player target = Bukkit.getServer().getPlayer(args[0]);
-                    if (target != null) {
-                        if (args[1].length() < 20) {
-                            target.setDisplayName(args[1]);
-                            sender.sendMessage(ChatColor.GREEN + target.getName() + "'s name changed to " + args[1]);
-                            target.sendMessage(ChatColor.GREEN + sender.getName() + " changed your name to " + args[1]);
-                            TrashCan.plugin.getConfig().set(target.getName() + ".nickname", args[1]);
-                            TrashCan.plugin.saveConfig();
-                        } else {
-                            sender.sendMessage(ChatColor.RED + "That name is too long. It must be below 20 characters. Sorry :(");
-                        }
-                    } else {
-                        sender.sendMessage(TrashCan.plugin.PlayerOffline);
-                    }
-                } else {
-                    sender.sendMessage(TrashCan.plugin.NoPermission);
-                }
-            }
-        }
-
         if (l.equalsIgnoreCase("setxp")) {
             if (args.length < 2) {
                 sender.sendMessage("/" + l.toString() + " [player]");

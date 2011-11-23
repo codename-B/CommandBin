@@ -111,14 +111,17 @@ commands:
        aliases: item
    msg:
        description: 'Message a player'
+       # Done - perms: trashcan.general.sethome
    sethome:
        description: 'Set your home'
+       # Done - perms: trashcan.general.home
    home:
        description: 'Teleport to your home'
    setwarp:
        description: 'Create a warp'
    warp:
        description: 'Teleport to a warp'
+       # Done - perms: trashcan.general.nick, trashcan.general.nick.others
    nick:
        description: 'Set somebodys nickname'
    setxp:
