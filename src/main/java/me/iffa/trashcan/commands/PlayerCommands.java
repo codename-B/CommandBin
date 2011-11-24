@@ -455,39 +455,6 @@ public class PlayerCommands implements CommandExecutor {
             }
         }
 
-        if (l.equalsIgnoreCase("i")) // Incredibly messy, must get a decent /i working. 
-        {
-            if (args.length < 1) {
-                sender.sendMessage("/" + l.toString() + " [name] [amount]");
-            } else {
-                if (TrashCan.plugin.pCheck(sender, "CommandBin.general.item")) {
-                    int id = -1;
-                    int amount = 1;
-                    try {
-                        id = Integer.parseInt(args[0]);
-                    } catch (NumberFormatException e) {
-                        Material mat = Material.getMaterial(args[0].toUpperCase().replace(" ", "_"));
-                        id = (mat != null ? mat.getId() : -1);
-                    }
-                    if (args.length > 1) {
-                        try {
-                            amount = Integer.parseInt(args[1]);
-                        } catch (NumberFormatException e) {
-                        }
-                    }
-                    if (id == -1) {
-                        sender.sendMessage(ChatColor.RED + "This item does not exist.");
-                        return false;
-                    }
-                    ((Player) sender).getInventory().addItem(new ItemStack(id, amount));
-                    ((Player) sender).sendMessage(ChatColor.GREEN + "You obtained " + id);
-                    return true;
-                } else {
-                    sender.sendMessage(TrashCan.plugin.NoPermission);
-                }
-            }
-        }
-
         if (l.equalsIgnoreCase("msg")) {
             if (args.length < 2) {
                 sender.sendMessage("/" + l.toString() + " [player] [message]");

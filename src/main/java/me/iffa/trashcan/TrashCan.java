@@ -62,10 +62,10 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class TrashCan extends JavaPlugin {
     // Variables
+    private boolean panicDisabled = false;
     private static ConfigHandler configHandler;
     private static PluginDescriptionFile description;
     private static String prefix = "[TrashCan]";
-    private boolean panicDisabled = false;
     private final TrashBlockListener blockListener = new TrashBlockListener(this);
     private final TrashEntityListener entityListener = new TrashEntityListener(this);
     private final TrashPlayerListener playerListener = new TrashPlayerListener();
@@ -91,7 +91,6 @@ public class TrashCan extends JavaPlugin {
         TrashCommand.initializeCommands();
         // We're done here! Wohoo!
         LoggerUtil.log(Level.INFO, "Enabled version " + description.getVersion() + ".");
-        
     }
     
     /**

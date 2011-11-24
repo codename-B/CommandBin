@@ -379,6 +379,22 @@ public class ConfigHandler {
     public boolean hasHomes(Player player) {
         return config.get(ConfigFile.CONFIG).getConfigurationSection(player.getName() + ".home") == null ? false : true;
     }
+    
+    public boolean hasWarps() {
+        return config.get(ConfigFile.CONFIG).getConfigurationSection("settings.warps.") == null ? false : true;
+    }
+    
+    public Location getWarp(String warp) {
+        if (!config.get(ConfigFile.CONFIG).contains("settings.warps." + warp)) {
+            return null;
+        }
+        double x = config.get(ConfigFile.CONFIG).getDouble("settings.warps." + warp + ".x");
+        double y = config.get(ConfigFile.CONFIG).getDouble("settings.warps." + warp + ".y");
+        double z = config.get(ConfigFile.CONFIG).getDouble("settings.warps." + warp + ".z");
+        String w = config.get(ConfigFile.CONFIG).getString("settings.warps." + warp + ".world");
+        World world = Bukkit.getWorld(w);
+        return new Location(world, x, y, z);
+    }
 
     /* Setter methods */
     /**
@@ -585,6 +601,38 @@ public class ConfigHandler {
             config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
         } catch (IOException ex) {
             LoggerUtil.log(Level.WARNING, "Problem while setting player specific setting: " + ex.toString());
+        }
+    }
+    
+    /**
+     * Sets a new warp.
+     * 
+     * @param location Warp location
+     * @param warp Warp name
+     */
+    public void setWarp(Location location, String warp) {
+        config.get(ConfigFile.CONFIG).set("settings.warps." + warp + ".x", location.getX());
+        config.get(ConfigFile.CONFIG).set("settings.warps." + warp + ".y", location.getY());
+        config.get(ConfigFile.CONFIG).set("settings.warps." + warp + ".z", location.getZ());
+        config.get(ConfigFile.CONFIG).set("settings.warps." + warp + ".world", location.getWorld().getName());
+        try {
+            config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
+        } catch (IOException ex) {
+            LoggerUtil.log(Level.WARNING, "Problem while setting warp: " + ex.toString());
+        }
+    }
+    
+    /**
+     * Removes a warp.
+     * 
+     * @param warp Warp to remove
+     */
+    public void removeWarp(String warp) {
+        config.get(ConfigFile.CONFIG).set("settings.warps." + warp + "", null);
+        try {
+            config.get(ConfigFile.CONFIG).save(file.get(ConfigFile.CONFIG));
+        } catch (IOException ex) {
+            LoggerUtil.log(Level.WARNING, "Problem while removing warp: " + ex.toString());
         }
     }
     

@@ -26,6 +26,7 @@ import me.iffa.trashcan.commands.fun.LeaveCommand;
 import me.iffa.trashcan.commands.fun.SnowmanCommand;
 import me.iffa.trashcan.commands.fun.TorchbowCommand;
 import me.iffa.trashcan.commands.general.CreativeCommand;
+import me.iffa.trashcan.commands.general.HelpCommand;
 import me.iffa.trashcan.commands.general.HomeCommand;
 import me.iffa.trashcan.commands.general.MOTDCommand;
 import me.iffa.trashcan.commands.general.MeCommand;
@@ -33,12 +34,16 @@ import me.iffa.trashcan.commands.general.NickCommand;
 import me.iffa.trashcan.commands.general.SethomeCommand;
 import me.iffa.trashcan.commands.general.SpawnmobCommand;
 import me.iffa.trashcan.commands.general.SurvivalCommand;
+import me.iffa.trashcan.commands.general.UsageCommand;
+import me.iffa.trashcan.commands.general.WarpCommand;
 import me.iffa.trashcan.commands.moderator.BanCommand;
 import me.iffa.trashcan.commands.moderator.BanIPCommand;
+import me.iffa.trashcan.commands.moderator.DelwarpCommand;
 import me.iffa.trashcan.commands.moderator.FreezeCommand;
 import me.iffa.trashcan.commands.moderator.HandicapCommand;
 import me.iffa.trashcan.commands.moderator.KickCommand;
 import me.iffa.trashcan.commands.moderator.MuteCommand;
+import me.iffa.trashcan.commands.moderator.SetwarpCommand;
 import me.iffa.trashcan.commands.moderator.UnbanCommand;
 import me.iffa.trashcan.commands.moderator.UnbanIPCommand;
 
@@ -95,6 +100,9 @@ public abstract class TrashCommand {
         commands.put("home", new HomeCommand("home"));
         commands.put("sethome", new SethomeCommand("sethome"));
         commands.put("nick", new NickCommand("nick"));
+        commands.put("warp", new WarpCommand("warp"));
+        commands.put("usage", new UsageCommand("usage"));
+        commands.put("help", new HelpCommand("help"));
         
         // Fun commands
         commands.put("crossbow", new CrossbowCommand("crossbow"));
@@ -114,10 +122,14 @@ public abstract class TrashCommand {
         commands.put("freeze", new FreezeCommand("freeze"));
         commands.put("banip", new BanIPCommand("banip"));
         commands.put("handicap", new HandicapCommand("handicap"));
+        commands.put("setwarp", new SetwarpCommand("setwarp"));
+        commands.put("delwarp", new DelwarpCommand("delwarp"));
         
         // Need to investigate the mysterious .getCommands() a bit more.
         // TODO: Set TrashCommandExecutor as executor for all commands nicely.
         System.out.println(TrashCan.getDescriptionFile().getCommands());
+        @SuppressWarnings("unchecked")
+        Map<String, Map<String, Object>> pluginCommands = (Map<String, Map<String, Object>>) TrashCan.getDescriptionFile().getCommands();
         
     }
     

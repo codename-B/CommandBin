@@ -13,17 +13,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Represents /home.
+ * Represents /warp.
  * 
  * @author iffamies
  */
-public class HomeCommand extends TrashCommand {
+public class WarpCommand extends TrashCommand {
     /**
-     * Constructor of HomeCommand.
+     * Constructor of WarpCommand.
      * 
      * @param label Command label
      */
-    public HomeCommand(String label) {
+    public WarpCommand(String label) {
         super(label);
     }
 
@@ -40,21 +40,21 @@ public class HomeCommand extends TrashCommand {
             return false;
         } else {
             Player player = (Player) cs;
-            if (!player.hasPermission("trashcan.general.home")) {
+            if (!player.hasPermission("trashcan.general.warp")) {
                 MessageUtil.sendMessage(player, ChatColor.RED + "You don't have permission!");
                 return true;
             }
-            if (!TrashCan.getConfigHandler().hasHomes(player)) {
-                MessageUtil.sendMessage(player, ChatColor.RED + "You don't have any homes! Set one with /sethome <home>!");
+            if (!TrashCan.getConfigHandler().hasWarps()) {
+                MessageUtil.sendMessage(player, ChatColor.RED + "No warps are set.");
                 return true;
             }
-            Location home = TrashCan.getConfigHandler().getHome(args[0], player);
-            if (home == null) {
-                MessageUtil.sendMessage(cs, ChatColor.RED + "Home '" + args[0] + "' does not exist!");
+            Location warp = TrashCan.getConfigHandler().getWarp(args[0]);
+            if (warp == null) {
+                MessageUtil.sendMessage(cs, ChatColor.RED + "Warp '" + args[0] + "' does not exist!");
                 return true;
             }
-            player.teleport(home);
-            MessageUtil.sendMessage(player, ChatColor.GREEN + "You've been teleported to home '" + args[0] + "'!");
+            player.teleport(warp);
+            MessageUtil.sendMessage(player, ChatColor.GREEN + "You've been teleported to warp '" + args[0] + "'!");
             return true;
         }
     }
@@ -64,6 +64,6 @@ public class HomeCommand extends TrashCommand {
      */
     @Override
     public void sendUsage(CommandSender cs) {
-        MessageUtil.sendMessage(cs, ChatColor.GRAY + "Usage: /home <name>");
+        MessageUtil.sendMessage(cs, ChatColor.GRAY + "Usage: /warp <name>");
     }
 }
