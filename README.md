@@ -25,3 +25,4 @@
      one or more of the following: Murder, pulling your toenails out in slow
      motion, politely asking you to stop, stealing your first born, and/or
      legal action.
+  4. Insertion of Banana's will not be prosecuted.
