@@ -50,3 +50,5 @@ settings:
   spawn-enderdragon-on-hitting-enderegg: true
   # True if players should be teleported to the place their thrown egg hits.
   teleport-on-egg-throw: false
+  # True if a player should be able to have multiple homes
+  multihomes: true

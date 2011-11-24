@@ -1,6 +1,6 @@
 # TrashCan plugin.yml (do not modify)
 name: TrashCan
-version: 'TC-1.30'
+version: 'TC-1.31'
 authors: [CainFoool, iffa]
 main: me.iffa.trashcan.TrashCan
 # Softdepends on CommandBin for a few reasons
@@ -173,8 +173,12 @@ commands:
        # Done (not in CommandBin) - perms: trashcan.general.motd
    motd:
        description: 'Get the server message of the day.'
+       # Done (not in CommandBin) - perms: trashcan.general.usage
    usage:
        description: "Get a command's usage information."
+       # Done - perms: trashcan.general.more
+   more:
+       description: 'Give some more of this!'
 # Permissions
 permissions: []
   

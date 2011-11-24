@@ -13,7 +13,10 @@ import me.iffa.trashcan.utils.ConfigHandler;
 import me.iffa.trashcan.utils.LoggerUtil;
 
 // Bukkit Imports
+import org.bukkit.Material;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -140,6 +143,21 @@ public class TrashCan extends JavaPlugin {
         pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Event.Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Event.Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_EGG_THROW, playerListener, Event.Priority.Normal, this);
+    }
+    
+    /**
+     * Registers custom recipes.
+     */
+    private void registerRecipes() {
+        // This recipe is in CommandBin, so it is in TrashCan too.
+        ShapelessRecipe tntRecipe = new ShapelessRecipe(new ItemStack(Material.TNT));
+        tntRecipe.addIngredient(Material.STICK);
+        tntRecipe.addIngredient(Material.DIAMOND);
+        tntRecipe.addIngredient(Material.GOLD_INGOT);
+        
+        // Adding all recipes to Bukkit.
+        getServer().addRecipe(tntRecipe);
+        
     }
     
     /* Efficiency methods */

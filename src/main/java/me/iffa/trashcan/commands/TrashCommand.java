@@ -31,6 +31,7 @@ import me.iffa.trashcan.commands.general.HomeCommand;
 import me.iffa.trashcan.commands.general.ItemCommand;
 import me.iffa.trashcan.commands.general.MOTDCommand;
 import me.iffa.trashcan.commands.general.MeCommand;
+import me.iffa.trashcan.commands.general.MoreCommand;
 import me.iffa.trashcan.commands.general.NickCommand;
 import me.iffa.trashcan.commands.general.SethomeCommand;
 import me.iffa.trashcan.commands.general.SpawnmobCommand;
@@ -98,13 +99,15 @@ public abstract class TrashCommand {
         commands.put("creative", new CreativeCommand("creative"));
         commands.put("survival", new SurvivalCommand("survival"));
         commands.put("spawnmob", new SpawnmobCommand("spawnmob"));
-        commands.put("home", new HomeCommand("home"));
+        // TODO: Add command for non-multihome /home
+        commands.put("home", TrashCan.getConfigHandler().getMultiHomes() ? new HomeCommand("home") : null);
         commands.put("sethome", new SethomeCommand("sethome"));
         commands.put("nick", new NickCommand("nick"));
         commands.put("warp", new WarpCommand("warp"));
         commands.put("usage", new UsageCommand("usage"));
         commands.put("help", new HelpCommand("help"));
         commands.put("item", new ItemCommand("item"));
+        commands.put("more", new MoreCommand("more"));
         
         // Fun commands
         commands.put("crossbow", new CrossbowCommand("crossbow"));

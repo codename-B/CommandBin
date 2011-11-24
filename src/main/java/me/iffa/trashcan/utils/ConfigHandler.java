@@ -395,6 +395,10 @@ public class ConfigHandler {
         World world = Bukkit.getWorld(w);
         return new Location(world, x, y, z);
     }
+    
+    public boolean getMultiHomes() {
+        return config.get(ConfigFile.CONFIG).getBoolean("settings.multihomes", true);
+    }
 
     /* Setter methods */
     /**

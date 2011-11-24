@@ -150,6 +150,9 @@ public class TrashPlayerListener extends PlayerListener {
         if (TrashCan.getConfigHandler().getNick(e.getPlayer()) != null) {
             e.getPlayer().setDisplayName(TrashCan.getConfigHandler().getNick(e.getPlayer()));
         }
+        if (e.getPlayer().hasPermission("trashcan.other.strike-on-join")) { // 1.31
+            e.getPlayer().getWorld().strikeLightningEffect(e.getPlayer().getLocation());
+        }
         
         // Sending MOTD to player.
         String motd = TrashCan.getConfigHandler().getMOTD();
