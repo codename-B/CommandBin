@@ -28,6 +28,7 @@ import me.iffa.trashcan.commands.fun.TorchbowCommand;
 import me.iffa.trashcan.commands.general.CreativeCommand;
 import me.iffa.trashcan.commands.general.HelpCommand;
 import me.iffa.trashcan.commands.general.HomeCommand;
+import me.iffa.trashcan.commands.general.ItemCommand;
 import me.iffa.trashcan.commands.general.MOTDCommand;
 import me.iffa.trashcan.commands.general.MeCommand;
 import me.iffa.trashcan.commands.general.NickCommand;
@@ -103,6 +104,7 @@ public abstract class TrashCommand {
         commands.put("warp", new WarpCommand("warp"));
         commands.put("usage", new UsageCommand("usage"));
         commands.put("help", new HelpCommand("help"));
+        commands.put("item", new ItemCommand("item"));
         
         // Fun commands
         commands.put("crossbow", new CrossbowCommand("crossbow"));
