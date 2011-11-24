@@ -1,5 +1,5 @@
 name: CommandBin
-version: 1.30
+version: 1.31
 author: CainFoool
 main: me.cain.commandbin.CommandBin
 commands:
@@ -143,3 +143,5 @@ commands:
        description: 'Unban a players IP'
    me:
        description: 'Simple me'
+   more:
+       description: 'Receive more'

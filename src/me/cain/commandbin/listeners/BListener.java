@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.EnderDragon;
+import org.bukkit.event.Event.Type;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -62,6 +62,7 @@ public class BListener extends BlockListener {
 	{
 		
 		Block brokenblock = e.getBlock();
+		Material test = brokenblock.getType();
 		
 		if(CommandBin.plugin.getConfig().getBoolean("settings.mineablemobspawners"))
 		{

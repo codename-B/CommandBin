@@ -14,6 +14,8 @@ import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.util.Vector;
 
 public class PlayerCommands implements CommandExecutor
@@ -434,7 +436,7 @@ public class PlayerCommands implements CommandExecutor
 				if(CommandBin.plugin.pCheck(sender, "CommandBin.general.explode"))
 				{
 					
-					float radius = Integer.parseInt(args[0]);
+					float radius = Integer.parseInt(args[1]);
 					
 					Player target = Bukkit.getServer().getPlayer(args[0]);
 					
@@ -468,7 +470,7 @@ public class PlayerCommands implements CommandExecutor
 				{
 					Player target = Bukkit.getServer().getPlayer(args[0]);
 					
-					int i = Integer.parseInt(args[0]) * 10; // Always remember to multiply by 10, milliseconds ftw.
+					int i = Integer.parseInt(args[1]) * 10; // Always remember to multiply by 10, milliseconds ftw.
 					
 					if(target != null)
 					{
@@ -617,7 +619,7 @@ public class PlayerCommands implements CommandExecutor
 					Player target = Bukkit.getServer().getPlayer(args[0]);
 					if(target != null)
 					{
-						double i = Integer.parseInt(args[0]) * 0.4;
+						double i = Integer.parseInt(args[1]) * 0.4;
 						
 						target.setVelocity(new Vector(i, i, 0));
 						target.sendMessage(ChatColor.GREEN + sender.getName() + " slapped you!");
@@ -1088,6 +1090,19 @@ public class PlayerCommands implements CommandExecutor
 				{
 					sender.sendMessage(CommandBin.plugin.NoPermission);
 				}
+			}
+		}
+		
+		if(l.equalsIgnoreCase("more"))
+		{
+			if(CommandBin.plugin.pCheck(sender, "CommandBin.general.more"))
+			{
+				sender.getInventory().addItem(new ItemStack(sender.getItemInHand().getType(), 64));
+				sender.sendMessage(ChatColor.GREEN + "Received 64 of what you're holding!");
+			}
+			else
+			{
+				sender.sendMessage(CommandBin.plugin.NoPermission);
 			}
 		}
 		return false;

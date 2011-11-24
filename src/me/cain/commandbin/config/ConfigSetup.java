@@ -211,6 +211,13 @@ public class ConfigSetup
 			CommandBin.plugin.saveConfig();
 		}
 		
+		if(CommandBin.plugin.getConfig().get("settings.multihomesupport") == null)
+		{
+			System.out.println(CommandBin.plugin.Plugin + "[Config] Setting Multi Home Support");
+			CommandBin.plugin.getConfig().set("settings.multihomesupport", true);
+			CommandBin.plugin.saveConfig();
+		}
+		
 		
 		
 		

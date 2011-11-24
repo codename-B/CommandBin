@@ -160,6 +160,11 @@ public class PListener extends PlayerListener {
 			e.getPlayer().sendMessage("your ip is banned ;O");
 		}
 		
+		if(CommandBin.plugin.pCheck(e.getPlayer(), "CommandBin.other.strikeonjoin"))
+		{
+			e.getPlayer().getWorld().strikeLightningEffect(e.getPlayer().getLocation());
+		}
+		
 		return;
 	}
 	
